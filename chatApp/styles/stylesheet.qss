@@ -1,0 +1,56 @@
+QPushButton#signup_btn {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+QPushButton#signin_btn,#back_btn
+{
+    border-radius: 30px;
+    border-color: rgb(97, 94, 252);
+    border-style: solid;
+    background-color: rgb(126, 142, 241);
+    border-width:3px;
+}
+#pass_visible[state='unvisible']
+{
+    border-image: url(:/resourse/unvisible.png);
+}
+#pass_visible[state='unvisible_hover']
+{
+    border-image: url(:/resourse/unvisible_hover.png);
+}
+#pass_visible[state='visible']
+{
+    border-image: url(:/resourse/visible.png);
+}
+#pass_visible[state='visible_hover']
+{
+    border-image: url(:/resourse/visible_hover.png);
+}
+#passre_visible[state='unvisible']
+{
+    border-image: url(:/resourse/unvisible.png);
+}
+#passre_visible[state='unvisible_hover']
+{
+    border-image: url(:/resourse/unvisible_hover.png);
+}
+#passre_visible[state='visible']
+{
+    border-image: url(:/resourse/visible.png);
+}
+#passre_visible[state='visible_hover']
+{
+    border-image: url(:/resourse/visible_hover.png);
+}
+
+/**#resetPasswd_label[state='normal'],#resetPasswd_label[state='selected']
+{
+    color: black;}**/
+#resetPasswd_label[state='hover'],#resetPasswd_label[state='selected_hover']
+{
+    color: rgb(42,112,241);
+}

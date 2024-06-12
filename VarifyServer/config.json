@@ -1,0 +1,17 @@
+{
+    "email":
+    {
+        "user": "magicsong.lunar@qq.com",
+        "pass": "jecvwgllzvgsffha"
+    },
+    "mysql":
+    {
+        "host": "127.0.0.1",
+        "port": 3306
+    },
+    "redis":{
+        "port":7777,
+        "host":"127.0.0.1",
+        "password": "iqjkhl"
+    }
+}

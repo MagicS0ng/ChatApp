@@ -1,0 +1,7 @@
+*.exe
+.vs/
+node_modules/
+.vscode/
+VisualStugRpc/
+x64/
+build/
