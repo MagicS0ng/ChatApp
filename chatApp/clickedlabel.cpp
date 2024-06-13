@@ -11,22 +11,46 @@ void ClickedLabel::mousePressEvent(QMouseEvent *ev)
     {
         if(m_curstate==ClicklbState::Normal)
         {
-            qDebug()<<"clicked, change to selected hover: " << m_selected_hover;
+            qDebug()<<"clicked, change to selected press: " << m_selected_hover;
             m_curstate = ClicklbState::Selected;
-            setProperty("state", m_selected_hover);
+            setProperty("state", m_selected_press);
             repolish(this);
             update();
         }else
         {
-            qDebug()<<"clicked, change to normal hover: " << m_normal_hover;
+            qDebug()<<"clicked, change to normal press: " << m_normal_hover;
             m_curstate = ClicklbState::Normal;
-            setProperty("state", m_normal_hover);
+            setProperty("state", m_normal_press);
+            repolish(this);
+            update();
+        }
+
+        return ;
+    }
+    QLabel::mousePressEvent(ev);
+}
+
+void ClickedLabel::mouseReleaseEvent(QMouseEvent *ev)
+{
+    if(ev->button()==Qt::LeftButton)
+    {
+        if(m_curstate==ClicklbState::Normal)
+        {
+            qDebug() << "released, change to normal hover";
+            setProperty("state",m_normal_hover);
+            repolish(this);
+            update();
+        }else
+        {
+            qDebug() << "released,change to select hover";
+            setProperty("state",m_selected_hover);
             repolish(this);
             update();
         }
         emit clicked();
+        return ;
     }
-    QLabel::mousePressEvent(ev);
+    QLabel::mouseReleaseEvent(ev);
 }
 
 void ClickedLabel::enterEvent(QEnterEvent *event)

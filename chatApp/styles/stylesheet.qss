@@ -56,7 +56,7 @@ QPushButton#signin_btn,#back_btn
 }
 
 QWidget#sidebar_widget {
-    background-color: rgb(231, 70, 70);
+    background-color: rgb(85, 194, 63);
 }
 QPushButton#add_btn[state='normal'] {
     border-image: url(:/resourse/add_friend_normal.png)
@@ -135,4 +135,104 @@ QLineEdit#search_box{
     background: transparent;
 }
 
+#tool_widget
+{
+    background: #fde1ee;
+    border-bottom: 0.5px solid；
+    /**#ababab;**/
+}
+#send_widget
+{
+    background: #ec9b6b;
+}
+#send_btn[state="normal"]
+{
+    background: #f0f0f0;
+    color: #2cb46e;
+    font-size: 16px; /* 设置字体大小 */
+    font-family: "Microsoft YaHei"; /* 设置字体 */
+    border-radius: 50px; /* 设置圆角 */
+}
+#send_btn[state="hover"]
+{
+    background: #d2d2d2;
+   color: #2cb46e;
+   font-size: 16px; /* 设置字体大小 */
+   font-family: "Microsoft YaHei"; /* 设置字体 */
+   border-radius: 20px; /* 设置圆角 */
+}
+#title_lb
+{
+    font-size: 16px; /* 设置字体大小 */
+    font-family: "Microsoft YaHei"; /* 设置字体 */
+}
+#send_btn[state="press"]
+{
+background: #c6c6c6;
+   color: #2cb46e;
+   font-size: 16px; /* 设置字体大小 */
+   font-family: "Microsoft YaHei"; /* 设置字体 */
+   border-radius: 20px; /* 设置圆角 */
+}
+#recv_btn[state="normal"]
+{
+background: #f0f0f0;
+   color: #2cb46e;
+   font-size: 16px; /* 设置字体大小 */
+   font-family: "Microsoft YaHei"; /* 设置字体 */
+   border-radius: 20px; /* 设置圆角 */
+}
+#recv_btn[state="hover"]
+{
+background: #d2d2d2;
+  color: #2cb46e;
+  font-size: 16px; /* 设置字体大小 */
+  font-family: "Microsoft YaHei"; /* 设置字体 */
+  border-radius: 20px; /* 设置圆角 */
+}
+#recv_btn[state="press"]
+{
+background: #c6c6c6;
+   color: #2cb46e;
+   font-size: 16px; /* 设置字体大小 */
+   font-family: "Microsoft YaHei"; /* 设置字体 */
+   border-radius: 20px; /* 设置圆角 */
+}
+#emoji_lb[state="normal"]
+{
+    border-image: url(:/resourse/smile.png);
+}
+#emoji_lb[state="hover"]
+{
+ border-image: url(:/resourse/smile_hover.png);
+}
+#emoji_lb[state="press"]
+{
+     border-image: url(:/resourse/smile_press.png);
+}
+#file_lb[state="normal"]
+{
+border-image: url(:/resourse/filedir.png);
+}
+#file_lb[state="hover"]
+{
+   border-image: url(:/resourse/filedir_hover.png);
+}
 
+#file_lb[state="press"]
+{
+       border-image: url(:/resourse/filedir_press.png);
+}
+#chat_msg_list
+{
+    background: #1e1e1e;
+}
+#chat_area
+{
+    background: #23a9f2;
+    border: none;
+}
+#chat_bg
+{
+    background: #1e1e1e;
+}

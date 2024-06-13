@@ -10,6 +10,7 @@ class ClickedLabel : public QLabel
 public:
     ClickedLabel(QWidget *parent=nullptr);
     void mousePressEvent(QMouseEvent *ev) override;
+    void mouseReleaseEvent(QMouseEvent *ev) override;
     void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void SetState(QString normal="", QString hover="", QString press="", QString select="", QString select_hover = "", QString select_press="");
@@ -21,7 +22,6 @@ private:
     QString m_selected;
     QString m_selected_hover;
     QString m_selected_press;
-
     ClicklbState m_curstate;
 signals:
     void  clicked(void);

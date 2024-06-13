@@ -65,3 +65,5 @@ void MainWindow::SlotSwitchToChat()
     this->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
 }
 
+
+

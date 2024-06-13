@@ -5,7 +5,9 @@
 #include <QAction>
 #include <QRandomGenerator>
 #include "global.h"
+#include <QKeyEvent>
 #include "msgcards.h"
+#include "loadingdialog.h"
 namespace Ui {
 class chatDialog;
 }
@@ -20,11 +22,14 @@ public:
     void addChatFriend();
 private:
     void showSearch(bool isSearch);
+    void keyPressEvent(QKeyEvent *event) override;
 private:
     Ui::chatDialog *ui;
     ChatUIMode m_state;
     ChatUIMode m_mode;
     bool is_loading;
+private slots:
+    void slotLoadingChatFriends();
 };
 
 #endif // CHATDIALOG_H

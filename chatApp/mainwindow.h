@@ -7,6 +7,7 @@
 #include "signupdialog.h"
 #include "resetdialog.h"
 #include "chatdialog.h"
+#include <QKeyEvent>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,7 @@ public slots:
     void SlotSwitchToReset();
     void SlotResetToLoginin();
     void SlotSwitchToChat();
+
 private:
     Ui::MainWindow *ui;
     loginDialog * _login_dlg;

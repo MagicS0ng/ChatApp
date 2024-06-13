@@ -35,6 +35,7 @@ chatDialog::chatDialog(QWidget *parent)
         showSearch(false);
     });
     showSearch(false);
+    connect(ui->chatting_friends_list, &ChattingFriendsList::sigLoadingChatFriends, this, &chatDialog::slotLoadingChatFriends);
     addChatFriend();
 }
 
@@ -98,5 +99,33 @@ void chatDialog::showSearch(bool isSearch)
         ui->search_candidates_list->hide();
         m_mode = ChatUIMode::ContactMode;
     }
+
+}
+
+void chatDialog::slotLoadingChatFriends()
+{
+    if(is_loading)
+    {
+        return ;
+    }
+    is_loading=true;
+    loadingDialog * loading_dlg =  new loadingDialog(this);
+    loading_dlg->setModal(true);
+    loading_dlg->show();
+    qDebug() << "add new msg cards...";
+    addChatFriend();
+    loading_dlg->deleteLater();
+    is_loading = false;
+
+}
+
+void chatDialog::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key()==Qt::Key_Escape)
+    {
+        event->ignore();
+
+    }else
+    {  chatDialog::keyPressEvent(event);}
 
 }

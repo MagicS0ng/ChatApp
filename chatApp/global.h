@@ -47,6 +47,22 @@ enum TipErr
     TIP_VARIFY_ERR=5,
     TIP_USER_ERR=6
 };
+enum ChatUIMode
+{
+    SearchMode,
+    ChatMode,
+    ContactMode,
+};
+enum ListItemType
+{
+    CHAT_FRIEND_ITEM,
+    CONTACT_FRIEND_ITEM,
+    SEARCH_USER_ITEM,
+    ADD_USER_ITEM,
+    INVALID_ITEM,
+    GROUP_TIP_ITEM,
+};
+
 enum ClicklbState
 {
     Normal=0,
