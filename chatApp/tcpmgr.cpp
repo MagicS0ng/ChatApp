@@ -109,7 +109,6 @@ void TcpMgr::initHandlers()
         qDebug() << jsonObj["uid"].toString();
         emit sigSwitchChatDlg();
     });
-    qDebug() << "_handlers is empty() = " << _handlers.empty();
 }
 
 void TcpMgr::handleMsg(ReqId id, int len, QByteArray data)

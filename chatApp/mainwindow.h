@@ -6,7 +6,7 @@
 #include "logindialog.h"
 #include "signupdialog.h"
 #include "resetdialog.h"
-
+#include "chatdialog.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -25,10 +25,12 @@ public slots:
     void SlotBackToLogin();
     void SlotSwitchToReset();
     void SlotResetToLoginin();
+    void SlotSwitchToChat();
 private:
     Ui::MainWindow *ui;
     loginDialog * _login_dlg;
     signupDialog * _signup_dlg;
+    chatDialog * _chat_dlg;
     ResetDialog * _reset_dlg;
     QStackedWidget *stackedWidget;
 };

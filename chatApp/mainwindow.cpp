@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(_login_dlg, &loginDialog::switchToSignup, this, &MainWindow::SlotSwitchToSignup);
     stackedWidget->setCurrentWidget(_login_dlg);
     connect(_login_dlg, &loginDialog::switchToReset,this, &MainWindow::SlotSwitchToReset);
+    connect(TcpMgr::GetInstance().get(),&TcpMgr::sigSwitchChatDlg, this, &MainWindow::SlotSwitchToChat);
+    emit TcpMgr::GetInstance()->sigSwitchChatDlg();
 }
 
 MainWindow::~MainWindow()
@@ -51,5 +53,15 @@ void MainWindow::SlotSwitchToReset()
 void MainWindow::SlotResetToLoginin()
 {
     stackedWidget->setCurrentWidget(_login_dlg);
+}
+
+void MainWindow::SlotSwitchToChat()
+{
+    _chat_dlg = new chatDialog(this);
+    _chat_dlg->setWindowFlags(Qt::CustomizeWindowHint|Qt::FramelessWindowHint);
+    stackedWidget->addWidget(_chat_dlg);
+    stackedWidget->setCurrentWidget(_chat_dlg);
+    this->setMinimumSize(QSize(1050,900));
+    this->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
 }
 

@@ -54,3 +54,85 @@ QPushButton#signin_btn,#back_btn
 {
     color: rgb(42,112,241);
 }
+
+QWidget#sidebar_widget {
+    background-color: rgb(231, 70, 70);
+}
+QPushButton#add_btn[state='normal'] {
+    border-image: url(:/resourse/add_friend_normal.png)
+}
+QPushButton#add_btn[state='hover'] {
+border-image: url(:/resourse/add_friend_hover.png)
+}
+QPushButton#add_btn[state='press'] {
+border-image: url(:/resourse/add_friend_hover.png)
+}
+QLineEdit#search_box{
+    border: 2px  solid #e74646;
+    border-radius: 5px;
+}
+
+#chat_list_widget{
+    background-color: rgb(0,0,0);
+}
+#chatting_friends_list{
+    background-color: rgb(15, 16, 18);
+    border:none;
+}
+
+#chatting_friends_list::item::selected{
+    background-color: #55c23f;
+    border:none;
+    outlint:none;
+}
+
+#chatting_friends_list::item::hover{
+    background-color: rgb(16, 17, 18);
+    border:none;
+    outline:none;
+}
+#chatting_friends_list::focus
+{
+    border:none;
+    outline: none;
+}
+#friend_id
+{
+    color: rgb(255,255,255);
+    font-size: 14px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei";
+}
+#friend_msg
+{
+    color: rgb(255,255,255);
+    font-size: 12px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei";
+}
+#time_widget #time_lb
+{
+    color: rgb(255,255,255);
+    font-size: 10px;
+    font-family: "Microsoft YaHei";
+}
+#QScrollBar:vertical
+{
+    background: transparent;
+    width : 8px;
+    margin: 0px;
+}
+#QScrollBar::handle:vertical
+{
+    background: #ec9b6b;
+    min-height: 10px;
+    border-radius: 4px;
+}
+#QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical
+{
+    height: 0px;
+    border: none;
+    background: transparent;
+}
+
+
