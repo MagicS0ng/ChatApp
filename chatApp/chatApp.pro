@@ -12,7 +12,9 @@ RC_ICONS= favicon.ico
 DESTDIR = ./bin
 
 SOURCES += \
+    bubbleframe.cpp \
     chatdialog.cpp \
+    chatitembase.cpp \
     chatpage.cpp \
     chattingfriendslist.cpp \
     chattingview.cpp \
@@ -26,15 +28,20 @@ SOURCES += \
     logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
+    messagetextedit.cpp \
     msgcards.cpp \
+    picturebubble.cpp \
     resetdialog.cpp \
     signupdialog.cpp \
     tcpmgr.cpp \
+    textbubble.cpp \
     timerbtn.cpp \
     usermgr.cpp
 
 HEADERS += \
+    bubbleframe.h \
     chatdialog.h \
+    chatitembase.h \
     chatpage.h \
     chattingfriendslist.h \
     chattingview.h \
@@ -47,11 +54,14 @@ HEADERS += \
     loadingdialog.h \
     logindialog.h \
     mainwindow.h \
+    messagetextedit.h \
     msgcards.h \
+    picturebubble.h \
     resetdialog.h \
     signupdialog.h \
     singleton.h \
     tcpmgr.h \
+    textbubble.h \
     timerbtn.h \
     usermgr.h
 

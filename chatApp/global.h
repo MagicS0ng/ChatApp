@@ -36,7 +36,11 @@ struct ServerInfo
     QString Token;
         int Uid;
 };
-
+enum class ChatRole
+{
+    Self,
+    Other,
+};
 enum TipErr
 {
     TIP_SUCCESS=0,
@@ -67,6 +71,12 @@ enum ClicklbState
 {
     Normal=0,
     Selected=1
+};
+struct MsgInfo
+{
+    QString msgFlag;
+    QString contents;
+    QPixmap pixMap;
 };
 extern QString gate_url_prefix ;
 #endif // GLOBAL_H

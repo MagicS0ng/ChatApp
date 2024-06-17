@@ -124,8 +124,8 @@ void chatDialog::keyPressEvent(QKeyEvent *event)
     if(event->key()==Qt::Key_Escape)
     {
         event->ignore();
-
-    }else
-    {  chatDialog::keyPressEvent(event);}
+        return;
+    }
+    QDialog::keyPressEvent(event);
 
 }

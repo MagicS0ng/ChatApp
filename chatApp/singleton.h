@@ -3,6 +3,7 @@
 #include "global.h"
 template <typename T>
 class Singleton{
+// protected: visibility to sub-class.
 protected:
     Singleton()=default;
     // disable copy constructor
@@ -15,7 +16,7 @@ public:
     static std::shared_ptr<T> GetInstance(){
         static std::once_flag s_flag; // thread security
         std::call_once(s_flag, [&](){  // lambda funtion pass s_flag by reference
-            _instance = std::shared_ptr<T>(new T);
+            _instance = std::shared_ptr<T>(new T); // init by 'new ' instead of make_shared, because sub-class constructor is invisible to GetInstance()
         });
         return _instance;
     }
@@ -23,7 +24,7 @@ public:
     {
         qDebug() << _instance.get();
     }
-    ~Singleton()
+    virtual ~Singleton()
     {
         qDebug()<< "this is a singleton destructor" ;
     }

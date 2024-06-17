@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
-    <height>514</height>
+    <width>956</width>
+    <height>795</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -79,20 +79,27 @@
        </widget>
       </item>
       <item>
-       <widget class="ChattingView" name="chat_msg_list" native="true"/>
+       <widget class="ChattingView" name="chat_msg_list" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QWidget" name="tool_widget" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>70</height>
+          <height>60</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>70</height>
+          <height>60</height>
          </size>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -213,7 +220,14 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QTextEdit" name="chat_msg_box"/>
+          <widget class="MessageTextEdit" name="chat_msg_box">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>400</height>
+            </size>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -352,6 +366,11 @@
    <extends>QWidget</extends>
    <header location="global">chattingview.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MessageTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header location="global">messagetextedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
