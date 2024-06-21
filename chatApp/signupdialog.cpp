@@ -126,7 +126,7 @@ void signupDialog::on_securityCode_btn_clicked()
         errMsg = "Send Successfully, check your email!";
         showErr(errMsg);
         ui->err_label->setProperty("state", "great");
-        qDebug() << HttpMgr::GetInstance().use_count() << "";
+        // qDebug() << HttpMgr::GetInstance().use_count() << "";
         // repolish(ui->err_label);
     }
 }

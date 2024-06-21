@@ -78,6 +78,8 @@ void chatDialog::addChatFriend()
     }
 }
 
+
+
 void chatDialog::showSearch(bool isSearch)
 {
     if(isSearch)
@@ -129,3 +131,21 @@ void chatDialog::keyPressEvent(QKeyEvent *event)
     QDialog::keyPressEvent(event);
 
 }
+
+void chatDialog::on_add_btn_clicked()
+{
+    QString searched_name = ui->search_box->text();
+    if(searched_name.isEmpty())
+    {
+        QMessageBox::warning(this,"Warning","can not be NULL!");
+        return ;
+    }
+    QJsonObject jsonObj;
+    jsonObj["name"] = searched_name;
+    HttpMgr::GetInstance()->PostHttpReq(QUrl(gate_url_prefix+"/search_user"),
+                                        jsonObj, ReqId::ID_SEARCH_USER,Modules::CHATMOD
+                                                 );
+}
+
+
+

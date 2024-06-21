@@ -1,12 +1,12 @@
 #include "HttpConnection.h"
 #include "LogicSystem.h"
 
-unsigned char ToHex(unsigned char x)
+static unsigned char ToHex(unsigned char x)
 {
 	return x > 9 ? x + 55 : x + 48;
 }
 
-unsigned char FromHex(unsigned char x)
+static unsigned char FromHex(unsigned char x)
 {
 	unsigned char y;
 	if (x == 'A' && x <= 'Z')
@@ -19,7 +19,7 @@ unsigned char FromHex(unsigned char x)
 	return y;
 }
 
-std::string urlEncode(const std::string& str)
+static std::string urlEncode(const std::string& str)
 {
 	std::string strTemp = "";
 	size_t length = str.length();
@@ -38,7 +38,7 @@ std::string urlEncode(const std::string& str)
 	}
 	return strTemp;
 }
-std::string urlDecode(const std::string& str)
+static std::string urlDecode(const std::string& str)
 {
 	std::string strTemp = "";
 	size_t length = str.length();
@@ -62,6 +62,7 @@ HttpConnection::HttpConnection(tcp::socket socket) : m_socket(std::move(socket))
 void HttpConnection::Start()
 {
 	auto self = shared_from_this();
+	// async_read: 异步的从m_socket到读取m_request到m_buffer,非阻塞。 bytes_transferreed,读取的字节数
 	http::async_read(m_socket, m_buffer, m_request, [self](beast::error_code ec, std::size_t bytes_transferred)
 		{
 			try
@@ -71,7 +72,7 @@ void HttpConnection::Start()
 					std::cout << "http read err is " << ec.what() << std::endl;
 					return;
 				}
-				boost::ignore_unused(bytes_transferred);
+				boost::ignore_unused(bytes_transferred); //消除编译时的未使用的警告
 				self->HandleReq();
 				self->CheckDelay();
 			}
@@ -112,9 +113,9 @@ void HttpConnection::HandleReq()
 			WriteResponse();
 			return;
 		}
-		m_response.result(http::status::ok);
-		m_response.set(http::field::server, "GateServer");
-		WriteResponse();
+		m_response.result(http::status::ok);  //response.result(status)设置 http请求的响应状态码，OK或not_fount
+		m_response.set(http::field::server, "GateServer"); //设置响应头的字段
+		WriteResponse(); 
 		return;
 	}
 }

@@ -8,7 +8,9 @@ CServer::CServer(boost::asio::io_context& ioc, unsigned short& port): m_ioc(ioc)
 void CServer::Start()
 {
 	auto self = shared_from_this();
-	m_acceptor.async_accept(m_socket, [self](beast::error_code ec)
+	auto& io_context = AsioIOServicePool::GetInstance()->GetIOService();
+	std::shared_ptr<HttpConnection> new_con = std::make_shared<HttpConnection>(io_context);
+	m_acceptor.async_accept(new_con, [self, new_con](beast::error_code ec)
 		{
 			try
 			{ // if failed, listen on other one
@@ -18,14 +20,15 @@ void CServer::Start()
 					return;
 				}
 				// create new connection
-				std::make_shared<HttpConnection>(std::move(self->m_socket))->Start();
+				new_con->Start();
 
 				// keep listening
 				self->Start();
 			}
 			catch (std::exception &exp)
 			{
-
+				std::cout << "We got some exception here!" << exp.what() << std::endl;
+				self->Start();
 			}
 		});
 }

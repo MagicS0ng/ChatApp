@@ -253,7 +253,7 @@ LogicSystem::LogicSystem()
 		beast::ostream(connection->m_response.body()) << jsonStr;
 		return true;
 		});
-
+	
 
 }		
 bool LogicSystem::HandleGet(std::string path, std::shared_ptr<HttpConnection> con)
@@ -264,7 +264,8 @@ bool LogicSystem::HandleGet(std::string path, std::shared_ptr<HttpConnection> co
 	}
 	m_get_handler[path](con);
 	return true;
-}bool LogicSystem::HandlePost(std::string path, std::shared_ptr<HttpConnection> con)
+}
+bool LogicSystem::HandlePost(std::string path, std::shared_ptr<HttpConnection> con)
 {
 	if (m_post_handler.find(path) == m_post_handler.end())
 	{

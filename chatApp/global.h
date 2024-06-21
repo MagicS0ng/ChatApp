@@ -18,11 +18,13 @@ enum ReqId{
     ID_LOGIN_USER=1004,
     ID_CHAT_LOGIN=1005,
     ID_CHAT_LOGIN_RSP=1006,
+    ID_SEARCH_USER=1007,
 };
 enum Modules{
     REGISTERMOD=0,
     RESETMOD=1,
     LOGINMOD=2,
+    CHATMOD=3,
 };
 enum ErrorCodes{
     SUCCESS=0,
