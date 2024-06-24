@@ -56,7 +56,7 @@ QPushButton#signin_btn,#back_btn
 }
 
 QWidget#sidebar_widget {
-    background-color: rgb(85, 194, 63);
+    background-color: rgb(47, 47, 46);
 }
 QPushButton#add_btn[state='normal'] {
     border-image: url(:/resourse/add_friend_normal.png)
@@ -137,13 +137,12 @@ QLineEdit#search_box{
 
 #tool_widget
 {
-    background: #fde1ee;
+    background: #2f2f2e;
     border-bottom: 0.5px solid；
-    /**#ababab;**/
 }
 #send_widget
 {
-    background: #ec9b6b;
+    background: #2f2f2e;
 }
 #send_btn[state="normal"]
 {
@@ -235,4 +234,95 @@ border-image: url(:/resourse/filedir.png);
 #chat_bg
 {
     background: #1e1e1e;
+}
+#chat_user_name
+{
+    color: rgb(153,153,153);
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+#side_chat_wd[state='normal']
+{
+    border-image: url(:/resourse/chat_icon.png);
+}
+#side_chat_wd[state='hover']
+{
+    border-image: url(:/resourse/chat_icon_hover.png);
+}
+#side_chat_wd[state='pressed']
+{
+    border-image: url(:/resourse/chat_icon_press.png);
+}
+#side_chat_wd[state='selected_normal']
+{
+    border-image: url(:/resourse/chat_icon_press.png);
+}
+#side_chat_wd[state='selected_hover']
+{
+    border-image: url(:/resourse/chat_icon_press.png);
+}
+
+#side_contact_wd[state='normal']
+{
+    border-image: url(:/resourse/contact_list.png);
+}
+#side_contact_wd[state='hover']
+{
+    border-image: url(:/resourse/contact_list_hover.png);
+}
+#side_contact_wd[state='pressed']
+{
+    border-image: url(:/resourse/contact_list_press.png);
+}
+#side_contact_wd[state='selected_normal']
+{
+    border-image: url(:/resourse/contact_list_press.png);
+}
+#side_contact_wd[state='selected_hover']
+{
+    border-image: url(:/resourse/contact_list_press.png);
+}
+#search_box
+{
+    border: 2px solid #f1f1f1;
+}
+#search_candidates_list {
+    background-color: rgb(46, 47, 48);
+    border: none;
+}
+#search_candidates_list::item::selected
+{
+    background-color: #d3d7d4;
+    border:none;
+    outline:none;
+}
+#search_candidates_list::item::hover
+{
+    background-color: rgb(206, 207, 208);
+    border:none;
+    outline:none;
+}
+#search_candidates_list::item::focust
+{
+    border:none;
+    outline:none;
+}
+#invalid_item
+{
+    background-color: #eaeaea;
+    border:none;
+}
+#add_tip
+{
+    border-image: url(:/resourse/addtip.png);
+}
+#right_tip
+{
+    border-image: url(:/resourse/right_tip.png);
+}
+#message_tip
+{
+    text-align: center;
+    font-family: "Microsoft YaHei";
+    font-size: 12pt;
 }

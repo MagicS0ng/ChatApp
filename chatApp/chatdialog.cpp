@@ -34,9 +34,28 @@ chatDialog::chatDialog(QWidget *parent)
         ui->search_box->clearFocus();
         showSearch(false);
     });
+    ui->search_box->SetMaxLength(15);
     showSearch(false);
+    connect(HttpMgr::GetInstance().get(), &HttpMgr::sig_chat_mod_finish, this, &chatDialog::slotSearchUser);
     connect(ui->chatting_friends_list, &ChattingFriendsList::sigLoadingChatFriends, this, &chatDialog::slotLoadingChatFriends);
     addChatFriend();
+    QPixmap pixmap(":/resourse/head_1.jpg");
+    ui->side_avat_lb->setPixmap(pixmap);
+    QPixmap scaledPixmap = pixmap.scaled(ui->side_avat_lb->size(), Qt::KeepAspectRatio);
+    ui->side_avat_lb->setPixmap(scaledPixmap);
+    ui->side_avat_lb->setScaledContents(true);
+
+    ui->side_chat_wd->setProperty("state", "normal");
+    ui->side_contact_wd->setProperty("state", "normal");
+    ui->side_chat_wd->SetState("normal","hover","pressed","selected_normal","selected_hover","selected_pressed");
+    ui->side_contact_wd->SetState("normal","hover","pressed","selected_normal","selected_hover","selected_pressed");
+    AddLBGroup(ui->side_chat_wd);
+    AddLBGroup(ui->side_contact_wd);
+
+    connect(ui->side_chat_wd,&StateWidget::clicked,this, &chatDialog::SlotSideChat);
+    connect(ui->side_contact_wd,&StateWidget::clicked,this, &chatDialog::SlotSideContact);
+
+    connect(ui->search_box,&QLineEdit::textChanged,this, &chatDialog::slotTextChanged);
 }
 
 chatDialog::~chatDialog()
@@ -78,6 +97,18 @@ void chatDialog::addChatFriend()
     }
 }
 
+void chatDialog::ClearLabelState(StateWidget *lb)
+{
+    for(auto & ele: _lb_list)
+    {
+        if(ele==lb)
+        {
+            continue;
+        }
+        ele->ClearState();
+    }
+}
+
 
 
 void chatDialog::showSearch(bool isSearch)
@@ -102,6 +133,11 @@ void chatDialog::showSearch(bool isSearch)
         m_mode = ChatUIMode::ContactMode;
     }
 
+}
+
+void chatDialog::AddLBGroup(StateWidget *lb)
+{
+    _lb_list.push_back(lb);
 }
 
 void chatDialog::slotLoadingChatFriends()
@@ -132,20 +168,79 @@ void chatDialog::keyPressEvent(QKeyEvent *event)
 
 }
 
-void chatDialog::on_add_btn_clicked()
+void chatDialog::SlotSideChat()
 {
-    QString searched_name = ui->search_box->text();
-    if(searched_name.isEmpty())
-    {
-        QMessageBox::warning(this,"Warning","can not be NULL!");
-        return ;
-    }
-    QJsonObject jsonObj;
-    jsonObj["name"] = searched_name;
-    HttpMgr::GetInstance()->PostHttpReq(QUrl(gate_url_prefix+"/search_user"),
-                                        jsonObj, ReqId::ID_SEARCH_USER,Modules::CHATMOD
-                                                 );
+    qDebug() << "side chat clicked, switch to side chat";
+    ClearLabelState(ui->side_chat_wd);
+    ui->stackedWidget->setCurrentWidget(ui->chat_page);
+    m_state = ChatUIMode::ChatMode;
+    showSearch(false);
 }
 
+void chatDialog::SlotSideContact()
+{
+    qDebug() << "side contact clicked, switch to side contact";
+    ClearLabelState(ui->side_contact_wd);
+    ui->stackedWidget->setCurrentWidget(ui->friend_apply_page);
+    m_state=ChatUIMode::ContactMode;
+    showSearch(false);
+}
 
+void chatDialog::on_add_btn_clicked()
+{
+    if(ui->search_box->text().isEmpty())
+    {
+        QMessageBox::warning(this,"Warning","search text can not be null!");
+    }
+    QJsonObject jsonObj;
+    jsonObj["name"] = ui->search_box->text();
+    HttpMgr::GetInstance()->PostHttpReq(QUrl(gate_url_prefix+"/search_user"),
+                                        jsonObj, ReqId::ID_SEARCH_USER,Modules::CHATMOD);
+
+}
+
+void chatDialog::slotTextChanged(const QString &str)
+{
+    if(!str.isEmpty())
+    {
+        showSearch(true);
+    }
+}
+
+void chatDialog::slotSearchUser(ReqId id, QString res, ErrorCodes err)
+{
+
+    if(err!=ErrorCodes::SUCCESS)
+    {
+        QMessageBox::critical(this,"Error","ErrorCodes: not SUCCESS");
+        return ;
+    }
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(res.toUtf8());
+    if(jsonDoc.isNull())
+    {
+        QMessageBox::critical(this,"Error","Json Parse Failed!");
+        return ;
+    }
+    if(!jsonDoc.isObject())
+    {
+        QMessageBox::critical(this,"Error","Json Parse Failed!");
+        return ;
+    }
+    auto Sss=    [this](QJsonObject jsonObj){
+        int err = jsonObj["error"].toInt();
+        if(err!=ErrorCodes::SUCCESS)
+        {
+             QMessageBox::critical(this,"Error","ErrorCodes: not SUCCESS");
+
+            return ;
+        }
+        QString userName = jsonObj["userName"].toString();
+        QString email = jsonObj["email"].toString();
+        int uid = jsonObj["uid"].toInt();
+        qDebug() << "User " << userName << " found, email: " << email << ", uid: " << uid;
+        QMessageBox::information(this,"Searching Result","UserName: "+userName);
+    };
+    Sss(jsonDoc.object());
+    return ;
+}
 

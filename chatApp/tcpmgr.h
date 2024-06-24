@@ -6,6 +6,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include "UserMgr.h"
+#include "userdata.h"
 class TcpMgr: public QObject, public Singleton<TcpMgr>, public std::enable_shared_from_this<TcpMgr>
 {
     Q_OBJECT
@@ -32,6 +33,7 @@ signals:
     void sigSendData(ReqId reqId,QByteArray data);
     void sigSwitchChatDlg();
     void sigLoginFailed(int);
+    void sigUserSearch(std::shared_ptr<SearchInfo> si);
 };
 
 #endif // TCPMGR_H
