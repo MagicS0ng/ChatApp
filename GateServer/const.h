@@ -39,12 +39,13 @@ enum ErrorCodes {
 	RPCFailed = 1002,
 	VarifyExpired = 1003,
 	VarifyCodeErr = 1004,
-	UserExist = 1005,
+	UserNExist = 1005,
 	PasswdErr = 1006,
 	EmailNotMatch = 1007,
 	PasswdUpFailed = 1008,
 	PasswdInvalid = 1009,
 	RPCGetFailed = 1010,
+	UserExist = 1011,
 };
 class Defer
 {

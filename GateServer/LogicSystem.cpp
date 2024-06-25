@@ -57,8 +57,6 @@ LogicSystem::LogicSystem()
 				return true;
 
 			}
-
-
 			auto email = src_root["email"].asString();
 			GetVarifyRsp rsp = VerifyGrpcClient::GetInstance()->GetVarifyCode(email);
 			std::cout << "email is " << email << std::endl;
@@ -253,7 +251,42 @@ LogicSystem::LogicSystem()
 		beast::ostream(connection->m_response.body()) << jsonStr;
 		return true;
 		});
-	
+	RegPost("/search_user", [](std::shared_ptr<HttpConnection> connection) {
+		auto body_str = boost::beast::buffers_to_string(connection->m_request.body().data());
+		std::cout << "receive body is " << body_str << std::endl;
+		connection->m_response.set(http::field::content_type, "text/json");
+		Json::Value root;
+		Json::Reader reader;
+		Json::Value src_root;
+		
+		bool parse_success = reader.parse(body_str, src_root);
+		if (!parse_success)
+		{
+			std::cout << "Failed to parse JSON data!\n";
+			root["error"] = ErrorCodes::ErrorJson;
+			std::string jsonStr = root.toStyledString();
+			beast::ostream(connection->m_response.body()) << jsonStr;
+			return true;
+		}
+		auto name = src_root["name"].asString();
+		bool isExist = false;
+		UserInfo  userInfo = MysqlMgr::GetInstance()->SearchUser(name, isExist);
+		if (!isExist)
+		{
+			std::cout << "User Not Exist\n";
+			root["error"] = ErrorCodes::UserNExist;
+			std::string jsonStr = root.toStyledString();
+			beast::ostream(connection->m_response.body()) << jsonStr;
+			return true;
+		}
+		
+		root["userName"] = name;
+		root["email"] = userInfo.userEmail;
+		root["uid"] = userInfo.uid;
+		std::string jsonStr = root.toStyledString();
+		beast::ostream(connection->m_response.body()) << jsonStr;
+		return true;
+		});
 
 }		
 bool LogicSystem::HandleGet(std::string path, std::shared_ptr<HttpConnection> con)

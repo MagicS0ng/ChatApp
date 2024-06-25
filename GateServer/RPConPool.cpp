@@ -34,7 +34,7 @@ std::unique_ptr<VarifyService::Stub> RPConPool::getConnection()
 void RPConPool::returnConnection(std::unique_ptr<VarifyService::Stub> context)
 {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (is_stopw) {
+    if (is_stop) {
         return;
     }
     connections_.push(std::move(context));

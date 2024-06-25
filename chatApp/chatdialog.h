@@ -42,9 +42,7 @@ private slots:
     void SlotSideContact();
     void SlotSideChat();
     void slotLoadingChatFriends();
-    void on_add_btn_clicked();
     void slotTextChanged(const QString &str);
-    void slotSearchUser(ReqId id, QString res, ErrorCodes err);
 };
 
 #endif // CHATDIALOG_H

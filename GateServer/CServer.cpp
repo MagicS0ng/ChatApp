@@ -10,7 +10,7 @@ void CServer::Start()
 	auto self = shared_from_this();
 	auto& io_context = AsioIOServicePool::GetInstance()->GetIOService();
 	std::shared_ptr<HttpConnection> new_con = std::make_shared<HttpConnection>(io_context);
-	m_acceptor.async_accept(new_con, [self, new_con](beast::error_code ec)
+	m_acceptor.async_accept(new_con->GetSocket(), [self, new_con](beast::error_code ec)
 		{
 			try
 			{ // if failed, listen on other one

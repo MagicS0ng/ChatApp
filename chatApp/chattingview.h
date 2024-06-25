@@ -8,7 +8,7 @@
 #include <QScrollBar>
 #include <QEvent>
 #include <QStyleOption>
-#include <QPainter>>
+#include <QPainter>
 class ChattingView: public QWidget
 {
     Q_OBJECT

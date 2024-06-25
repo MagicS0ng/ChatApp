@@ -4,8 +4,12 @@ class HttpConnection : public std::enable_shared_from_this<HttpConnection>
 {
 public:
 	friend class LogicSystem;
-	w(tcp::socket socket); // 接管socket
-	void Start();						
+	HttpConnection(boost::asio::io_context& ioc); // 接管socket
+	void Start();				
+	tcp::socket& GetSocket()
+	{
+		return m_socket;
+	}
 private:
 	void CheckDelay();
 	void PreParseGetParam();

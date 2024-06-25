@@ -8,6 +8,7 @@ struct UserInfo
 	std::string userEmail;
 	int uid;
 };
+
 class MysqlDAO
 {
 public:
@@ -17,7 +18,7 @@ public:
 	bool CheckEmail(const std::string& name, const std::string& email);
 	bool CheckPwd(const std::string& email, const std::string & pwd, UserInfo& userInfo);
 	bool UpdatePwd(const std::string& name, const std::string& newPwd);
-
+	UserInfo SearchUser(const std::string &name,bool& isExist);
 private:
 	std::unique_ptr<MysqlPool> m_pool;
 };

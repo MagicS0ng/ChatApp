@@ -154,3 +154,46 @@ bool  MysqlDAO::CheckPwd(const std::string& email, const std::string& pwd,  User
 		return false;
 	}
 }
+UserInfo MysqlDAO::SearchUser(const std::string& name, bool& isExist)
+{
+	UserInfo userInfo;
+	userInfo.userName = "";
+	userInfo.userPwd = "";
+	userInfo.userEmail = "";
+	userInfo.uid = -1;
+	auto con = m_pool->getConnection();
+	try
+	{
+		if (con == nullptr)
+		{
+			return std::move(userInfo);
+		}
+		std::unique_ptr<sql::PreparedStatement> stmt(con->m_con->prepareStatement("SELECT * FROM user WHERE name = ?"));
+
+		stmt->setString(1, name);
+		std::unique_ptr<sql::ResultSet> res(stmt->executeQuery());
+		if (res->next())
+		{
+			int uid = res->getInt("uid");
+			std::string name = res->getString("name");
+			std::string email = res->getString("email");
+			std::cout << "Search Result: uid:[" << uid << "], name: [" << name << "], email: [" << email << "]";
+			userInfo.uid = uid;
+			userInfo.userName = name;
+			userInfo.userEmail = email;
+			userInfo.userPwd = "";
+			isExist = true;
+			return std::move(userInfo);
+		}
+		m_pool->returnConnection(std::move(con));
+		return std::move(userInfo);
+	}
+	catch (sql::SQLException& e)
+	{
+		m_pool->returnConnection(std::move(con));
+		std::cerr << "SQLException: " << e.what();
+		std::cerr << " (MySQL error code: " << e.getErrorCode();
+		std::cerr << ", SQLState: " << e.getSQLState() << " )\n";
+		return std::move(userInfo);
+	}
+}

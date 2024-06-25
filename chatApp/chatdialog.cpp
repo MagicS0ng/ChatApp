@@ -36,7 +36,6 @@ chatDialog::chatDialog(QWidget *parent)
     });
     ui->search_box->SetMaxLength(15);
     showSearch(false);
-    connect(HttpMgr::GetInstance().get(), &HttpMgr::sig_chat_mod_finish, this, &chatDialog::slotSearchUser);
     connect(ui->chatting_friends_list, &ChattingFriendsList::sigLoadingChatFriends, this, &chatDialog::slotLoadingChatFriends);
     addChatFriend();
     QPixmap pixmap(":/resourse/head_1.jpg");
@@ -207,40 +206,4 @@ void chatDialog::slotTextChanged(const QString &str)
     }
 }
 
-void chatDialog::slotSearchUser(ReqId id, QString res, ErrorCodes err)
-{
-
-    if(err!=ErrorCodes::SUCCESS)
-    {
-        QMessageBox::critical(this,"Error","ErrorCodes: not SUCCESS");
-        return ;
-    }
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(res.toUtf8());
-    if(jsonDoc.isNull())
-    {
-        QMessageBox::critical(this,"Error","Json Parse Failed!");
-        return ;
-    }
-    if(!jsonDoc.isObject())
-    {
-        QMessageBox::critical(this,"Error","Json Parse Failed!");
-        return ;
-    }
-    auto Sss=    [this](QJsonObject jsonObj){
-        int err = jsonObj["error"].toInt();
-        if(err!=ErrorCodes::SUCCESS)
-        {
-             QMessageBox::critical(this,"Error","ErrorCodes: not SUCCESS");
-
-            return ;
-        }
-        QString userName = jsonObj["userName"].toString();
-        QString email = jsonObj["email"].toString();
-        int uid = jsonObj["uid"].toInt();
-        qDebug() << "User " << userName << " found, email: " << email << ", uid: " << uid;
-        QMessageBox::information(this,"Searching Result","UserName: "+userName);
-    };
-    Sss(jsonDoc.object());
-    return ;
-}
 

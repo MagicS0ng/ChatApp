@@ -58,7 +58,7 @@ static std::string urlDecode(const std::string& str)
 	}
 	return strTemp;
 }
-HttpConnection::HttpConnection(tcp::socket socket) : m_socket(std::move(socket)) {}
+HttpConnection::HttpConnection(boost::asio::io_context &ioc) : m_socket(ioc) {}
 void HttpConnection::Start()
 {
 	auto self = shared_from_this();

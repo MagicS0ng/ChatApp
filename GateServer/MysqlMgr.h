@@ -12,6 +12,7 @@ public:
 	bool CheckEmail(const std::string &name, const std::string & email);
 	bool CheckPwd(const std::string &email,const std::string &pwd, UserInfo & userInfo);
 	bool UpdatePwd(const std::string& name, const std::string& email);
+	UserInfo SearchUser(const std::string &name, bool &isExist);
 private:
 	MysqlMgr();
 	MysqlDAO m_dao;

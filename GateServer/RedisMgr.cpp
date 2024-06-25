@@ -14,6 +14,7 @@ RedisMgr::RedisMgr()
  
 bool RedisMgr::Get(const std::string& key, std::string& value)
 {
+	
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
@@ -38,6 +39,7 @@ bool RedisMgr::Get(const std::string& key, std::string& value)
 }
 bool RedisMgr::Set(const std::string& key, const std::string& value)
 {
+	// 指定 key-value pair， 如果key存在就覆盖旧值
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
@@ -82,6 +84,7 @@ bool RedisMgr::Auth(const std::string& password)
 }
 bool RedisMgr::LPush(const std::string& key, const std::string& value)
 {
+	// lpush key v1 v2
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
@@ -107,6 +110,7 @@ bool RedisMgr::LPush(const std::string& key, const std::string& value)
 }
 bool RedisMgr::LPop(const std::string& key, std::string& value)
 {
+	// lpop key   key: [v1,v2]
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
@@ -126,6 +130,7 @@ bool RedisMgr::LPop(const std::string& key, std::string& value)
 }
 bool RedisMgr::RPush(const std::string& key, const std::string& value)
 {
+	// rpush key value,  key: [v1, v2];
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
@@ -150,6 +155,7 @@ bool RedisMgr::RPush(const std::string& key, const std::string& value)
 }
 bool RedisMgr::RPop(const std::string& key, std::string& value)
 {
+	// pop key  key:[v1,v2]
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
@@ -168,7 +174,9 @@ bool RedisMgr::RPop(const std::string& key, std::string& value)
 	return true;
 }
 bool RedisMgr::HSet(const std::string& key, std::string hkey, const std::string& value)
-{ // 多级key
+{ 
+	// 多级key HSET key field value
+	// key1: [key2: v1]
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
@@ -188,6 +196,8 @@ bool RedisMgr::HSet(const std::string& key, std::string hkey, const std::string&
 }
 bool RedisMgr::HSet(const char* key, const char* hkey, const char* hvalue, size_t hvaluelen)
 {
+	// 多级key HSET key field value
+	// key1: [key2: v1]
 	auto connect = m_conPool->getConnection();
 	if (connect == nullptr)
 	{
