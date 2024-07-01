@@ -24,7 +24,7 @@
 #include <condition_variable>
 
 
-
+#define LOGIN_COUNT "logincount"
 #define CODEPREFIX "code_"
 namespace beast = boost::beast;
 namespace http = beast::http;

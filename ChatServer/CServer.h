@@ -7,6 +7,7 @@
 #include <functional>
 #include "CSession.h"
 #include "AsioIOServicePool.h"
+#include "UserMgr.h"
 using tcp = boost::asio::ip::tcp;
 class CSession;
 class CServer

@@ -13,11 +13,10 @@ class msgCards : public ListBaseItem
 
 public:
     explicit msgCards(QWidget *parent = nullptr);
-     ~msgCards();
-     QSize sizeHint() const override;
-
+    ~msgCards();
+    QSize sizeHint() const override;
     void SetInfo(QString name, QString avatar, QString msg);
-
+    void ShowRedPoint(bool bshow);
 private:
     Ui::msgCards *ui;
     QString m_name;

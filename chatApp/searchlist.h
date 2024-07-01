@@ -9,10 +9,11 @@
 #include <memory>
 #include "userdata.h"
 #include "tcpmgr.h"
-#include "AddUserItem.h"
+#include "listbaseitem.h"
 #include "loadingdialog.h"
-
-
+#include "customizededit.h"
+#include "findsuccessdlg.h"
+#include "findfaildlg.h"
 class SearchList: public QListWidget
 {
     Q_OBJECT
@@ -25,6 +26,7 @@ protected:
 private:
     void addTipItem();
     void waitPending(bool pending=true);
+
 private:
     bool _send_pending;
     std::shared_ptr<QDialog> _find_dlg;

@@ -250,15 +250,20 @@
        <widget class="ChattingFriendsList" name="chatting_friends_list"/>
       </item>
       <item>
-       <widget class="QListWidget" name="contacts_list"/>
+       <widget class="ContactUserList" name="contacts_list"/>
       </item>
      </layout>
     </widget>
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="ChatPage" name="chat_page"/>
-     <widget class="QWidget" name="friend_apply_page"/>
+     <widget class="ApplyFriendPage" name="friend_apply_page">
+      <layout class="QVBoxLayout" name="verticalLayout_4"/>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -267,12 +272,23 @@
   <customwidget>
    <class>ClickedBtn</class>
    <extends>QPushButton</extends>
-   <header location="global">clickedbtn.h</header>
+   <header>clickedbtn.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SearchList</class>
+   <extends>QListWidget</extends>
+   <header>searchlist.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ContactUserList</class>
+   <extends>QListWidget</extends>
+   <header location="global">contactuserlist.h</header>
   </customwidget>
   <customwidget>
    <class>CustomizedEdit</class>
    <extends>QLineEdit</extends>
    <header location="global">customizededit.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>ChattingFriendsList</class>
@@ -292,9 +308,10 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>SearchList</class>
-   <extends>QListWidget</extends>
-   <header location="global">searchlist.h</header>
+   <class>ApplyFriendPage</class>
+   <extends>QWidget</extends>
+   <header location="global">applyfriendpage.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

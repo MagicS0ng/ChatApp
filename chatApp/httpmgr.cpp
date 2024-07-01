@@ -30,6 +30,7 @@ void HttpMgr::PostHttpReq(QUrl url, QJsonObject json, ReqId req_id, Modules mod)
             return ;
         }
         QString res = reply->readAll();
+        qDebug() << "Post no error";
         emit self->sig_http_finish(req_id, res, ErrorCodes::SUCCESS, mod);
         reply->deleteLater();
         return ;
@@ -48,6 +49,7 @@ void HttpMgr::slot_http_finish(ReqId id, QString res, ErrorCodes err, Modules mo
     }
     if(mod==Modules::LOGINMOD)
     {
+        qDebug() << "login httpmgr";
         emit sig_login_mod_finish(id, res,err);
     }
 }

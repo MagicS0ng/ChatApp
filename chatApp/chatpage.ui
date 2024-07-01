@@ -352,25 +352,25 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ClickedBtn</class>
-   <extends>QPushButton</extends>
-   <header location="global">clickedbtn.h</header>
-  </customwidget>
-  <customwidget>
    <class>ClickedLabel</class>
    <extends>QLabel</extends>
-   <header location="global">clickedlabel.h</header>
+   <header>clickedlabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ClickedBtn</class>
+   <extends>QPushButton</extends>
+   <header>clickedbtn.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MessageTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>MessageTextEdit.h</header>
   </customwidget>
   <customwidget>
    <class>ChattingView</class>
    <extends>QWidget</extends>
    <header location="global">chattingview.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MessageTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header location="global">messagetextedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

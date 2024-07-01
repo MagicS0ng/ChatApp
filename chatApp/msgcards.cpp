@@ -7,6 +7,8 @@ msgCards::msgCards(QWidget *parent)
 {
     ui->setupUi(this);
     SetItemType(ListItemType::CHAT_FRIEND_ITEM);
+    ui->red_point->raise();
+    ShowRedPoint(false);
 }
 
 msgCards::~msgCards()
@@ -32,4 +34,16 @@ void msgCards::SetInfo(QString name, QString avatar, QString msg)
     ui->icon_lb->setScaledContents(true);
     ui->friend_id->setText(m_name);
     ui->friend_msg->setText(m_msg);
+}
+
+void msgCards::ShowRedPoint(bool bshow)
+{
+    if(bshow)
+    {
+        ui->red_point->show();
+    }
+    else
+    {
+        ui->red_point->hide();
+    }
 }

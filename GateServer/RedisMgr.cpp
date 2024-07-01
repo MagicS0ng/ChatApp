@@ -1,7 +1,7 @@
 #include "RedisMgr.h"
 RedisMgr::~RedisMgr()
 {
-	Close();
+	
 }
 RedisMgr::RedisMgr()
 {
@@ -11,7 +11,29 @@ RedisMgr::RedisMgr()
 	auto passwd = gCfgMgr["Redis"]["Passwd"];
 	m_conPool.reset(new RedisConPool(5, host.c_str(), atoi(port.c_str()), passwd.c_str()));
 }
- 
+bool RedisMgr::HDel(const std::string& key, const std::string& field)
+{
+	auto connect = m_conPool->getConnection();
+	if (connect == nullptr)
+		return false;
+	Defer defer([&connect, this]()
+		{
+			m_conPool->returnConnection(connect);
+		});
+	redisReply* reply = (redisReply*)redisCommand(connect, "HDEL %s %s", key.c_str(), field.c_str());
+	if (reply == nullptr)
+	{
+		std::cerr << "HDEL command failed " << std::endl;
+		return false;
+	}
+	bool success = false;
+	if (reply->type == REDIS_REPLY_INTEGER)
+	{
+		success = reply->integer > 0;
+	}
+	freeReplyObject(reply);
+	return success;
+}
 bool RedisMgr::Get(const std::string& key, std::string& value)
 {
 	
@@ -297,4 +319,5 @@ bool RedisMgr::ExistsKey(const std::string& key)
 void RedisMgr::Close()
 {
 	m_conPool->Close();
+	m_conPool->ClearConnection();
 }

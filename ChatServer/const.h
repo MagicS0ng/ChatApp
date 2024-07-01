@@ -24,14 +24,18 @@
 #include <condition_variable>
 
 
+
 struct UserInfo
 {
 	std::string userName;
 	std::string userPwd;
 	std::string userEmail;
+	std::string userNick;
+	int userSex;
+	std::string userDesc;
 	int uid;
 };
-#define CODEPREFIX "code_"
+
 namespace beast = boost::beast;
 namespace http = beast::http;
 namespace net = boost::asio;
@@ -41,10 +45,23 @@ enum ChatSet
 {
 	MAX_LENGTH = 2048, HEAD_TOTAL_LEN = 4, HEAD_ID_LEN = 2, HEAD_DATA_LEN = 2, MAX_RECVQUE = 10000, MAX_SENDQUE = 1000
 };
+constexpr auto CODEPREFIX = "code_";
+constexpr auto USERIPPREFIX = "uip_";
+constexpr auto USERTOKENPREFIX = "utoken_";
+constexpr auto IPCOUNTPREFIX = "ipcount_";
+constexpr auto USER_BASE_INFO = "ubaseinfo_";
+constexpr auto LOGIN_COUNT = "logincount";
+constexpr auto NAME_INFO = "nameinfo_";
+
 enum Msg_IDS
 {
 	MSG_CHAT_LOGIN=1005,
 	MSG_CHAT_LOGIN_RSP=1006,
+	ID_SEARCH_USR_REQ = 1007,
+	ID_SEARCH_USER_RSP = 1008,
+	ID_ADD_FRIEND_REQ = 1009, //申请添加好友请求
+	ID_ADD_FRIEND_RSP = 1010, //申请添加好友回复
+	ID_NOTIFY_ADD_FRIEND_REQ = 1011,  //通知用户添加好友申请
 };
 //class ConfigMgr;
 enum ErrorCodes {

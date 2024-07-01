@@ -1,10 +1,10 @@
 #include "CSession.h"
-CSession::CSession(boost::asio::io_context& io_context, CServer* server) :m_socket(io_context),  m_server(server),
+CSession::CSession(boost::asio::io_context& io_context, CServer* server) :m_socket(io_context),  m_server(server), m_user_uid(0),
 is_close(false), is_head_parse(false)
 {
 	::memset(m_data, 0, ChatSet::MAX_LENGTH);
 	boost::uuids::uuid a_uuid = boost::uuids::random_generator()();
-	m_uuid = boost::uuids::to_string(a_uuid);
+	m_session_id = boost::uuids::to_string(a_uuid);
 	m_recv_head_node = std::make_shared<MsgNode>(ChatSet::HEAD_TOTAL_LEN);
 }
 
@@ -16,9 +16,18 @@ tcp::socket& CSession::GetSocket()
 {
 	return m_socket;
 }
-std::string& CSession::GetUuid()
+std::string& CSession::GetSessionId()
 {
-	return m_uuid;
+	return m_session_id;
+}
+void CSession::SetUserId(int uid)
+{
+	m_user_uid = uid;
+}
+
+int CSession::GetUserId()
+{
+	return m_user_uid;
 }
 void CSession::Start()
 {
@@ -31,7 +40,7 @@ void CSession::Send(std::string msg, short msgid)
 	int send_que_size = m_send_que.size();
 	if (send_que_size > ChatSet::MAX_SENDQUE)
 	{
-		std::cout << "Session: " << m_uuid << " semd qie filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
+		std::cout << "Session: " << m_session_id << " semd qie filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
 		return;
 	}
 	m_send_que.push(std::make_shared<SendNode>(msg.c_str(), msg.length(), msgid));
@@ -49,7 +58,7 @@ void CSession::Send(char * msg, short max_length,short msgid)
 	int send_que_size = m_send_que.size();
 	if (send_que_size > MAX_SENDQUE)
 	{
-		std::cout << "Session: " << m_uuid << " semd qie filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
+		std::cout << "Session: " << m_session_id << " semd qie filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
 		return;
 	}
 	m_send_que.push(std::make_shared<SendNode>(msg, max_length , msgid));
@@ -81,14 +90,14 @@ void CSession::AsyncReadBody(int total_len)
 			{
 				std::cout << "handle read failed, error is " << ec.what() << std::endl;
 				Close();
-				m_server->ClearSession(m_uuid);
+				m_server->ClearSession(m_session_id);
 				return;
 			}
 			if (bytes_transfered < total_len)
 			{
 				std::cout << "read length not match, read [" << bytes_transfered << "], total [" << total_len << "]" << std::endl;
 				Close();
-				m_server->ClearSession(m_uuid);
+				m_server->ClearSession(m_session_id);
 				return;
 			}
 			memcpy(m_recv_msg_node->m_data, m_data, bytes_transfered);
@@ -118,14 +127,14 @@ void CSession::AsyncReadHead(int total_len)
 				{
 					std::cout << "handle read failed, error is " << ec.what() << std::endl;
 					Close();
-					m_server->ClearSession(m_uuid);
+					m_server->ClearSession(m_session_id);
 					return;
 				}
 				if (bytes_transfered < ChatSet::HEAD_TOTAL_LEN)
 				{
 					std::cout << "read length not match, read [" << bytes_transfered << "], total [" << ChatSet::HEAD_TOTAL_LEN << "]" << std::endl;
 					Close();
-					m_server->ClearSession(m_uuid);
+					m_server->ClearSession(m_session_id);
 					return;
 				}
 				m_recv_head_node->Clear();
@@ -138,7 +147,7 @@ void CSession::AsyncReadHead(int total_len)
 				if (msg_id > MAX_LENGTH)
 				{
 					std::cout << "invalid msg_id is [" << msg_id << "]" << std::endl;
-					m_server->ClearSession(m_uuid);
+					m_server->ClearSession(m_session_id);
 					return;
 				}
 				short msg_len = 0;
@@ -148,7 +157,7 @@ void CSession::AsyncReadHead(int total_len)
 				if (msg_len > MAX_LENGTH)
 				{
 					std::cout << "invalid msg len is [" << msg_len << "]" << std::endl;
-					m_server->ClearSession(m_uuid);
+					m_server->ClearSession(m_session_id);
 					return;
 				}
 				m_recv_msg_node = std::make_shared<RecvNode>(msg_len, msg_id);
@@ -179,7 +188,7 @@ void CSession::HandleWrite(const boost::system::error_code& error, std::shared_p
 		{
 			std::cout << "handle write failed, error is " << error.what() << std::endl;
 			Close();
-			m_server->ClearSession(m_uuid);
+			m_server->ClearSession(m_session_id);
 		}
 	}
 	catch (const std::exception& e)

@@ -154,7 +154,40 @@ bool  MysqlDAO::CheckPwd(const std::string& email, const std::string& pwd,  User
 		return false;
 	}
 }
+bool MysqlDAO::AddFriendApply(const int& from, const int& to)
+{
+	auto con = m_pool->getConnection();
+	if (con == nullptr) {
+		return false;
+	}
 
+	Defer defer([this, &con]() {
+		m_pool->returnConnection(std::move(con));
+		});
+
+	try {
+		// 准备SQL语句
+		std::unique_ptr<sql::PreparedStatement> pstmt(con->m_con->prepareStatement("INSERT INTO friend_apply (from_uid, to_uid) values (?,?) "
+			"ON DUPLICATE KEY UPDATE from_uid = from_uid, to_uid = to_uid"));
+		pstmt->setInt(1, from); // from id
+		pstmt->setInt(2, to);
+		// 执行更新
+		int rowAffected = pstmt->executeUpdate();
+		if (rowAffected < 0) {
+			return false;
+		}
+		return true;
+	}
+	catch (sql::SQLException& e) {
+		std::cerr << "SQLException: " << e.what();
+		std::cerr << " (MySQL error code: " << e.getErrorCode();
+		std::cerr << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+		return false;
+	}
+
+
+	return true;
+}
 std::shared_ptr<UserInfo> MysqlDAO::GetUser(int uid)
 {
 	auto con = m_pool->getConnection();
@@ -174,6 +207,9 @@ std::shared_ptr<UserInfo> MysqlDAO::GetUser(int uid)
 			user_ptr->userPwd = res->getString("pwd");
 			user_ptr->userEmail = res->getString("email");
 			user_ptr->userName = res->getString("name");
+			user_ptr->userNick = res->getString("nick");
+			user_ptr->userDesc = res->getString("desc");
+			user_ptr->userSex = res->getInt("sex");
 			user_ptr->uid = uid;
 			break;
 		}
@@ -188,5 +224,45 @@ std::shared_ptr<UserInfo> MysqlDAO::GetUser(int uid)
 		return nullptr;
 
 
+	}
+}
+std::shared_ptr<UserInfo> MysqlDAO::GetUser(std::string name)
+{
+	auto con = m_pool->getConnection();
+	if (con == nullptr) {
+		return nullptr;
+	}
+
+	Defer defer([this, &con]() {
+		m_pool->returnConnection(std::move(con));
+		});
+
+	try {
+		// 准备SQL语句
+		std::unique_ptr<sql::PreparedStatement> pstmt(con->m_con->prepareStatement("SELECT * FROM user WHERE name = ?"));
+		pstmt->setString(1, name); // 将uid替换为你要查询的uid
+
+		// 执行查询
+		std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+		std::shared_ptr<UserInfo> user_ptr = nullptr;
+		// 遍历结果集
+		while (res->next()) {
+			user_ptr.reset(new UserInfo);
+			user_ptr->userPwd = res->getString("pwd");
+			user_ptr->userEmail = res->getString("email");
+			user_ptr->userName = res->getString("name");
+			user_ptr->userNick = res->getString("nick");
+			user_ptr->userDesc = res->getString("desc");
+			user_ptr->userSex = res->getInt("sex");
+			user_ptr->uid = res->getInt("uid");
+			break;
+		}
+		return user_ptr;
+	}
+	catch (sql::SQLException& e) {
+		std::cerr << "SQLException: " << e.what();
+		std::cerr << " (MySQL error code: " << e.getErrorCode();
+		std::cerr << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+		return nullptr;
 	}
 }

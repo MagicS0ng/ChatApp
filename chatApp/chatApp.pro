@@ -12,7 +12,11 @@ RC_ICONS= favicon.ico
 DESTDIR = ./bin
 
 SOURCES += \
-    adduseritem.cpp \
+    applyfriend.cpp \
+    applyfrienditem.cpp \
+    applyfriendlist.cpp \
+    applyfriendpage.cpp \
+    authenfriend.cpp \
     bubbleframe.cpp \
     chatdialog.cpp \
     chatitembase.cpp \
@@ -21,9 +25,19 @@ SOURCES += \
     chattingview.cpp \
     clickedbtn.cpp \
     clickedlabel.cpp \
+    clickedoncelabel.cpp \
+    contactuserlist.cpp \
+    conuseritem.cpp \
     customizededit.cpp \
+    customtextedit.cpp \
+    findfaildlg.cpp \
+    findsuccessdlg.cpp \
+    friendlabel.cpp \
     global.cpp \
+    grouptipitem.cpp \
     httpmgr.cpp \
+    invaliditem.cpp \
+    lineitem.cpp \
     listbaseitem.cpp \
     loadingdialog.cpp \
     logindialog.cpp \
@@ -35,6 +49,7 @@ SOURCES += \
     resetdialog.cpp \
     searchlist.cpp \
     signupdialog.cpp \
+    statelabel.cpp \
     statewidget.cpp \
     tcpmgr.cpp \
     textbubble.cpp \
@@ -43,7 +58,11 @@ SOURCES += \
     usermgr.cpp
 
 HEADERS += \
-    adduseritem.h \
+    applyfriend.h \
+    applyfrienditem.h \
+    applyfriendlist.h \
+    applyfriendpage.h \
+    authenfriend.h \
     bubbleframe.h \
     chatdialog.h \
     chatitembase.h \
@@ -52,9 +71,19 @@ HEADERS += \
     chattingview.h \
     clickedbtn.h \
     clickedlabel.h \
+    clickedoncelabel.h \
+    contactuserlist.h \
+    conuseritem.h \
     customizededit.h \
+    customtextedit.h \
+    findfaildlg.h \
+    findsuccessdlg.h \
+    friendlabel.h \
     global.h \
+    grouptipitem.h \
     httpmgr.h \
+    invaliditem.h \
+    lineitem.h \
     listbaseitem.h \
     loadingdialog.h \
     logindialog.h \
@@ -66,6 +95,7 @@ HEADERS += \
     searchlist.h \
     signupdialog.h \
     singleton.h \
+    statelabel.h \
     statewidget.h \
     tcpmgr.h \
     textbubble.h \
@@ -74,15 +104,26 @@ HEADERS += \
     usermgr.h
 
 FORMS += \
-    adduseritem.ui \
+    ChatUiTest.ui \
+    applyfriend.ui \
+    applyfrienditem.ui \
+    applyfriendpage.ui \
+    authenfriend.ui \
     chatdialog.ui \
     chatpage.ui \
+    conuseritem.ui \
+    findfaildlg.ui \
+    findsuccessdlg.ui \
+    friendlabel.ui \
+    grouptipitem.ui \
+    lineitem.ui \
     loadingdialog.ui \
     logindialog.ui \
     mainwindow.ui \
     msgcards.ui \
     resetdialog.ui \
-    signupdialog.ui
+    signupdialog.ui \
+    test.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

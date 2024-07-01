@@ -93,7 +93,7 @@ bool loginDialog::checkPwdValid()
         AddTipErr(TipErr::TIP_PWD_ERR,tr("password should be set with length within 8~15!"));
         return false;
     }
-    QRegularExpression regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+    QRegularExpression regex("^[a-zA-Z0-9!@#$%^&*]{6,15}$");
     bool match =regex.match(pass).hasMatch();
     if(!match)
     {
@@ -176,6 +176,7 @@ void loginDialog::slotLoginFailed(int err)
 
 void loginDialog::slotTcpConFinished(bool isSuccess)
 {
+    qDebug() << "slotTcpConFinished";
     if(isSuccess)
     {
         showErr(tr("login in in progress"));

@@ -105,6 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,7 +130,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AsioIOServicePool.cpp" />
+    <ClCompile Include="ChatGrpcClient.cpp" />
     <ClCompile Include="ChatServer.cpp" />
+    <ClCompile Include="ChatServiceImpl.cpp" />
     <ClCompile Include="ConfigMgr.cpp" />
     <ClCompile Include="CServer.cpp" />
     <ClCompile Include="CSession.cpp" />
@@ -141,15 +144,20 @@
     <ClCompile Include="MysqlDAO.cpp" />
     <ClCompile Include="MysqlMgr.cpp" />
     <ClCompile Include="MysqlPool.cpp" />
+    <ClCompile Include="RedisMgr.cpp" />
     <ClCompile Include="StatusConPool.cpp" />
     <ClCompile Include="StatusGrpcClient.cpp" />
+    <ClCompile Include="UserMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsioIOServicePool.h" />
+    <ClInclude Include="ChatGrpcClient.h" />
+    <ClInclude Include="ChatServiceImpl.h" />
     <ClInclude Include="ConfigMgr.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="CServer.h" />
     <ClInclude Include="CSession.h" />
+    <ClInclude Include="data.h" />
     <ClInclude Include="LogicNode.h" />
     <ClInclude Include="LogicSystem.h" />
     <ClInclude Include="message.grpc.pb.h" />
@@ -158,9 +166,11 @@
     <ClInclude Include="MySqlDAO.h" />
     <ClInclude Include="MysqlMgr.h" />
     <ClInclude Include="MySqlPool.h" />
+    <ClInclude Include="RedisMgr.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="StatusConPool.h" />
     <ClInclude Include="StatusGrpcClient.h" />
+    <ClInclude Include="UserMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.ini" />

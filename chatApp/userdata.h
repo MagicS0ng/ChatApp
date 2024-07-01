@@ -12,5 +12,13 @@ public:
     QString _desc;
     int _gender;
 };
+class AddFriendApply
+{
+public:
+    AddFriendApply(int from_uid, QString name, QString desc);
+    int _from_uid;
+    QString _name;
+    QString _desc;
+};
 
 #endif // USERDATA_H

@@ -1,4 +1,5 @@
 #include "chatdialog.h"
+
 #include "ui_chatdialog.h"
 
 chatDialog::chatDialog(QWidget *parent)
@@ -55,6 +56,16 @@ chatDialog::chatDialog(QWidget *parent)
     connect(ui->side_contact_wd,&StateWidget::clicked,this, &chatDialog::SlotSideContact);
 
     connect(ui->search_box,&QLineEdit::textChanged,this, &chatDialog::slotTextChanged);
+    showSearch(false);
+    this->installEventFilter(this);
+    ui->side_chat_wd->SetSelected(true);
+    connect(ui->contacts_list, &ContactUserList::sig_loading_contact_user,this,&chatDialog::SlotLoadingContactUser);
+
+    ui->search_candidates_list->SetSearchBox(ui->search_box);
+    connect(ui->contacts_list, &ContactUserList::sig_switch_apply_friend_page,this, &chatDialog::SlotSwitchApplyFriendPage);
+    connect(ui->friend_apply_page, &ApplyFriendPage::SigShowSearch,this, &chatDialog::SlotShowSearch);
+    ui->search_candidates_list->SetSearchBox(ui->search_box);
+    connect(TcpMgr::GetInstance().get(), &TcpMgr::sigFriendApply, this, &chatDialog::SlotApplyFriend);
 }
 
 chatDialog::~chatDialog()
@@ -64,21 +75,7 @@ chatDialog::~chatDialog()
 
 void chatDialog::addChatFriend()
 {
-    std::vector<QString> names= {"C++","Python","Rust","Pytorch","Tensorflow"};
-    std::vector<QString> heads= {
-        ":/resourse/head_1.jpg",
-        ":/resourse/head_2.jpg",
-        ":/resourse/head_3.jpg",
-        ":/resourse/head_4.jpg",
-        ":/resourse/head_5.jpg"
-    };
-    std::vector<QString> strs= {
-        "你妈贵姓",
-        "两开花",
-        "Keep going!",
-        "不宜妄自菲薄",
-        "Be sure of yourself!"
-    };
+
     for(int i  =0;i<13;i++)
     {
         int randomValue = QRandomGenerator::global()->bounded(100);
@@ -95,6 +92,8 @@ void chatDialog::addChatFriend()
         ui->chatting_friends_list->setItemWidget(item, msgcard);
     }
 }
+
+
 
 void chatDialog::ClearLabelState(StateWidget *lb)
 {
@@ -124,12 +123,18 @@ void chatDialog::showSearch(bool isSearch)
         ui->contacts_list->hide();
         ui->search_candidates_list->hide();
         m_mode = ChatUIMode::ChatMode;
+        ui->search_candidates_list->CloseFindDlg();
+        ui->search_box->clear();
+        ui->search_box->clearFocus();
     }else if(m_state==ChatUIMode::ContactMode)
     {
         ui->chatting_friends_list->hide();
         ui->contacts_list->show();
         ui->search_candidates_list->hide();
         m_mode = ChatUIMode::ContactMode;
+        ui->search_candidates_list->CloseFindDlg();
+        ui->search_box->clear();
+        ui->search_box ->clearFocus();
     }
 
 }
@@ -167,6 +172,37 @@ void chatDialog::keyPressEvent(QKeyEvent *event)
 
 }
 
+bool chatDialog::eventFilter(QObject *watched, QEvent *event)
+{
+    if (event->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        handleGlobalMousePress(mouseEvent);
+    }
+    return QDialog::eventFilter(watched, event);
+}
+
+void chatDialog::CloseFindDlg()
+{
+    ui->search_candidates_list->CloseFindDlg();
+}
+
+
+void chatDialog::handleGlobalMousePress(QMouseEvent *event)
+{
+
+    if( m_mode != ChatUIMode::SearchMode){
+        return;
+    }
+
+    // 将鼠标点击位置转换为搜索列表坐标系中的位置
+    QPoint posInSearchList = ui->search_candidates_list->mapFromGlobal(event->globalPos());
+    // 判断点击位置是否在聊天列表的范围内
+    if (!ui->search_candidates_list->rect().contains(posInSearchList)) {
+        // 如果不在聊天列表内，清空输入框
+        ui->search_box->clear();
+        showSearch(false);
+    }
+}
 void chatDialog::SlotSideChat()
 {
     qDebug() << "side chat clicked, switch to side chat";
@@ -185,18 +221,6 @@ void chatDialog::SlotSideContact()
     showSearch(false);
 }
 
-void chatDialog::on_add_btn_clicked()
-{
-    if(ui->search_box->text().isEmpty())
-    {
-        QMessageBox::warning(this,"Warning","search text can not be null!");
-    }
-    QJsonObject jsonObj;
-    jsonObj["name"] = ui->search_box->text();
-    HttpMgr::GetInstance()->PostHttpReq(QUrl(gate_url_prefix+"/search_user"),
-                                        jsonObj, ReqId::ID_SEARCH_USER,Modules::CHATMOD);
-
-}
 
 void chatDialog::slotTextChanged(const QString &str)
 {
@@ -204,6 +228,42 @@ void chatDialog::slotTextChanged(const QString &str)
     {
         showSearch(true);
     }
+}
+
+void chatDialog::SlotFocusOut()
+{
+
+}
+
+void chatDialog::SlotLoadingContactUser()
+{
+    qDebug() << "slot loading contact user";
+}
+
+void chatDialog::SlotSwitchApplyFriendPage()
+{
+    qDebug() << "Switch to applyfriendpage";
+    ui->stackedWidget->setCurrentWidget(ui->friend_apply_page);
+}
+
+void chatDialog::SlotFriendInfoPage()
+{
+
+}
+
+void chatDialog::SlotShowSearch(bool show)
+{
+    showSearch(show);
+}
+
+void chatDialog::SlotApplyFriend(std::shared_ptr<AddFriendApply> apply)
+{
+    qDebug() << "receive apply friend slot, applyuid is " << apply->_from_uid << " name is "
+             << apply->_name << " desc is " << apply->_desc;
+
+    ui->side_contact_wd->ShowRedPoint(true);
+    ui->contacts_list->ShowRedPoint(true);
+    ui->friend_apply_page->AddNewApply(apply);
 }
 
 

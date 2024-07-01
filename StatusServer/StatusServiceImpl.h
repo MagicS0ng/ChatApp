@@ -8,6 +8,8 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include "RedisMgr.h"
+#include <climits>
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -18,8 +20,21 @@ using message::LoginReq;
 using message::LoginRsp;
 using message::StatusService;
 
-struct ChatServer
+class ChatServer
 {
+public:
+	ChatServer(): host(""), port(""), name(""), con_count(0){}
+	ChatServer(const ChatServer&cs):host(cs.host),port(cs.port),name(cs.name),con_count(cs.con_count){}
+	ChatServer&operator=(const ChatServer &cs) {
+		if (this == &cs)
+		{
+			return *this;
+		}
+		host = cs.host;
+		port = cs.port;
+		name = cs.name;
+		con_count = cs.con_count;
+	}
 	std::string host;
 	std::string port;
 	std::string name;
@@ -27,6 +42,7 @@ struct ChatServer
 };
 class StatusServiceImpl final : public StatusService::Service
 {
+	const std::string USERTOKENPREFIX{ "utoken_" };
 public:
 	StatusServiceImpl();
 	Status GetChatServer(ServerContext *  context, const GetChatServerReq * request,GetChatServerRsp * reply) override;
@@ -36,6 +52,4 @@ private:
 	ChatServer getChatServer();
 	std::unordered_map < std::string, ChatServer> m_servers;
 	std::mutex m_server_mutex;
-	std::unordered_map <int, std::string> m_tokens;
-	std::mutex m_token_mutex;
 };
