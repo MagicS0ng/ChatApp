@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>922</width>
-    <height>722</height>
+    <width>800</width>
+    <height>700</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>700</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -46,7 +58,7 @@
      <property name="maximumSize">
       <size>
        <width>56</width>
-       <height>16777215</height>
+       <height>700</height>
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -64,6 +76,12 @@
       </property>
       <item>
        <widget class="QWidget" name="widget" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>150</height>
+         </size>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="spacing">
           <number>30</number>
@@ -161,7 +179,7 @@
      <property name="maximumSize">
       <size>
        <width>240</width>
-       <height>16777215</height>
+       <height>700</height>
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -185,6 +203,12 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
           <height>60</height>
          </size>
         </property>
@@ -244,19 +268,46 @@
        </widget>
       </item>
       <item>
-       <widget class="SearchList" name="search_candidates_list"/>
+       <widget class="SearchList" name="search_candidates_list">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>660</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="ChattingFriendsList" name="chatting_friends_list"/>
+       <widget class="ChattingFriendsList" name="chatting_friends_list">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>660</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QListWidget" name="contacts_list"/>
+       <widget class="QListWidget" name="contacts_list">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>660</height>
+         </size>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>700</height>
+      </size>
+     </property>
      <widget class="ChatPage" name="chat_page"/>
      <widget class="QWidget" name="friend_apply_page"/>
     </widget>

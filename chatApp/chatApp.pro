@@ -22,6 +22,7 @@ SOURCES += \
     clickedbtn.cpp \
     clickedlabel.cpp \
     customizededit.cpp \
+    findsuccessdlg.cpp \
     global.cpp \
     httpmgr.cpp \
     listbaseitem.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     clickedbtn.h \
     clickedlabel.h \
     customizededit.h \
+    findsuccessdlg.h \
     global.h \
     httpmgr.h \
     listbaseitem.h \
@@ -77,6 +79,7 @@ FORMS += \
     adduseritem.ui \
     chatdialog.ui \
     chatpage.ui \
+    findsuccessdlg.ui \
     loadingdialog.ui \
     logindialog.ui \
     mainwindow.ui \
@@ -99,3 +102,11 @@ DISTFILES += \
     resourse/unvisible_hover.png \
     resourse/visible.png \
     resourse/visible_hover.png
+CONFIG(debug, debug| release)
+{
+    OutputDir = $${OUT_PWD}/$${DESTDIR}
+    OutputDir = $$replace(OutputDir,/,\\)
+    static_dir = $${PWD}/static
+    static_dir = $$replace(static_dir,/,\\)
+    QMAKE_POST_LINK += xcopy /Y /E /I  \"$$static_dir\" \"$$OutputDir\\static\\\"
+}

@@ -6,6 +6,8 @@ chatDialog::chatDialog(QWidget *parent)
     , ui(new Ui::chatDialog),m_state(ChatUIMode::ChatMode), m_mode(ChatUIMode::ChatMode), is_loading(false)
 {
     ui->setupUi(this);
+    setWindowFlags(windowFlags()|Qt::FramelessWindowHint);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     ui->add_btn->SetState("normal","hover","press");
     ui->add_btn->setProperty("state", "normal");
     ui->search_box->SetMaxLength(15);
@@ -55,6 +57,8 @@ chatDialog::chatDialog(QWidget *parent)
     connect(ui->side_contact_wd,&StateWidget::clicked,this, &chatDialog::SlotSideContact);
 
     connect(ui->search_box,&QLineEdit::textChanged,this, &chatDialog::slotTextChanged);
+    this->installEventFilter(this);
+    ui->side_chat_wd->SetSelected(true);
 }
 
 chatDialog::~chatDialog()
@@ -108,7 +112,30 @@ void chatDialog::ClearLabelState(StateWidget *lb)
     }
 }
 
+bool chatDialog::eventFilter(QObject *watched, QEvent *event)
+{
+    if(event->type()==QEvent::MouseButtonPress)
+    {
+        QMouseEvent * mouseEvent = static_cast<QMouseEvent *>(event);
+        handleGlobalMousePress(mouseEvent);
+    }
+    return QDialog::eventFilter(watched,event);
 
+}
+
+void chatDialog::handleGlobalMousePress(QMouseEvent * event)
+{
+    if(m_mode!=ChatUIMode::SearchMode)
+    {
+        return ;
+    }
+    QPoint posInSearchList = ui->search_candidates_list->mapFromGlobal(event->globalPosition().toPoint());
+    if(!ui->search_candidates_list->rect().contains(posInSearchList))
+    {
+        ui->search_box->clear();
+        showSearch(false);
+    }
+}
 
 void chatDialog::showSearch(bool isSearch)
 {
@@ -183,19 +210,6 @@ void chatDialog::SlotSideContact()
     ui->stackedWidget->setCurrentWidget(ui->friend_apply_page);
     m_state=ChatUIMode::ContactMode;
     showSearch(false);
-}
-
-void chatDialog::on_add_btn_clicked()
-{
-    if(ui->search_box->text().isEmpty())
-    {
-        QMessageBox::warning(this,"Warning","search text can not be null!");
-    }
-    QJsonObject jsonObj;
-    jsonObj["name"] = ui->search_box->text();
-    HttpMgr::GetInstance()->PostHttpReq(QUrl(gate_url_prefix+"/search_user"),
-                                        jsonObj, ReqId::ID_SEARCH_USER,Modules::CHATMOD);
-
 }
 
 void chatDialog::slotTextChanged(const QString &str)

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QAction>
 #include <QRandomGenerator>
+#include <QMouseEvent>
 #include "global.h"
 #include <QKeyEvent>
 #include "msgcards.h"
@@ -27,6 +28,9 @@ public:
     void addChatFriend();
     void initHttpHandler();
     void ClearLabelState(StateWidget *lb);
+protected:
+    bool eventFilter(QObject *, QEvent *) override;
+    void handleGlobalMousePress(QMouseEvent *);
 private:
     void showSearch(bool isSearch);
     void AddLBGroup(StateWidget * lb);

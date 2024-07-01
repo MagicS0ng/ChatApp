@@ -11,7 +11,7 @@
 #include "tcpmgr.h"
 #include "AddUserItem.h"
 #include "loadingdialog.h"
-
+#include "customizededit.h"
 
 class SearchList: public QListWidget
 {

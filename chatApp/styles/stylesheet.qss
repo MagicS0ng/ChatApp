@@ -67,27 +67,27 @@ border-image: url(:/resourse/add_friend_hover.png)
 QPushButton#add_btn[state='press'] {
 border-image: url(:/resourse/add_friend_hover.png)
 }
-QLineEdit#search_box{
-    border: 2px  solid #e74646;
-    border-radius: 5px;
-}
 
 #chat_list_widget{
     background-color: rgb(0,0,0);
 }
+#chat_page
+{
+    background-color: rgb(255,255,255);
+}
 #chatting_friends_list{
-    background-color: rgb(15, 16, 18);
+    background-color: #dedbda;
     border:none;
 }
 
 #chatting_friends_list::item::selected{
-    background-color: #55c23f;
+    background-color: #c8c7c6;
     border:none;
-    outlint:none;
+    outline:none;
 }
 
 #chatting_friends_list::item::hover{
-    background-color: rgb(16, 17, 18);
+    background-color: #d6d7d8;
     border:none;
     outline:none;
 }
@@ -98,21 +98,21 @@ QLineEdit#search_box{
 }
 #friend_id
 {
-    color: rgb(255,255,255);
+    color: rgb(0,0,0);
     font-size: 14px;
     font-weight: normal;
     font-family: "Microsoft YaHei";
 }
 #friend_msg
 {
-    color: rgb(255,255,255);
+    color: rgb(0,0,0);
     font-size: 12px;
     font-weight: normal;
     font-family: "Microsoft YaHei";
 }
 #time_widget #time_lb
 {
-    color: rgb(255,255,255);
+    color: rgb(0,0,0);
     font-size: 10px;
     font-family: "Microsoft YaHei";
 }
@@ -137,16 +137,16 @@ QLineEdit#search_box{
 
 #tool_widget
 {
-    background: #2f2f2e;
+    background-color: rgb(225,225,225);
     border-bottom: 0.5px solid；
 }
 #send_widget
 {
-    background: #2f2f2e;
+    background-color: rgb(225,225,225);
 }
 #send_btn[state="normal"]
 {
-    background: #f0f0f0;
+    background-color: #f0f0f0;
     color: #2cb46e;
     font-size: 16px; /* 设置字体大小 */
     font-family: "Microsoft YaHei"; /* 设置字体 */
@@ -154,14 +154,19 @@ QLineEdit#search_box{
 }
 #send_btn[state="hover"]
 {
-    background: #d2d2d2;
-   color: #2cb46e;
-   font-size: 16px; /* 设置字体大小 */
-   font-family: "Microsoft YaHei"; /* 设置字体 */
-   border-radius: 20px; /* 设置圆角 */
+    background-color: #d2d2d2;
+    color: #2cb46e;
+    font-size: 16px; /* 设置字体大小 */
+    font-family: "Microsoft YaHei"; /* 设置字体 */
+    border-radius: 20px; /* 设置圆角 */
+}
+#chat_msg_box{
+    background-color: #f5f5f5;
+    color: #000000;
 }
 #title_lb
 {
+    color: rgb(0,0,0);
     font-size: 16px; /* 设置字体大小 */
     font-family: "Microsoft YaHei"; /* 设置字体 */
 }
@@ -224,16 +229,17 @@ border-image: url(:/resourse/filedir.png);
 }
 #chat_msg_list
 {
-    background: #1e1e1e;
+    background-color: #f5f5f5;
 }
 #chat_area
 {
-    background: #23a9f2;
+    background-color: #f5f5f5;
     border: none;
 }
+
 #chat_bg
 {
-    background: #1e1e1e;
+    background-color: #f5f5f5;
 }
 #chat_user_name
 {
@@ -282,12 +288,17 @@ border-image: url(:/resourse/filedir.png);
 {
     border-image: url(:/resourse/contact_list_press.png);
 }
+#search_widget
+{
+    background-color: #f7f7f7;
+}
 #search_box
 {
-    border: 2px solid #f1f1f1;
+    border: 2px solid #e2e2e2;
+    border-radius: 10px;
 }
 #search_candidates_list {
-    background-color: rgb(46, 47, 48);
+    background-color: #ededed;
     border: none;
 }
 #search_candidates_list::item::selected
@@ -325,4 +336,36 @@ border-image: url(:/resourse/filedir.png);
     text-align: center;
     font-family: "Microsoft YaHei";
     font-size: 12pt;
+}
+#FindSuccessDlg{
+    background-color: #ffffff;
+    color: #000000;
+}
+#name_lb {
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+#add_friend_btn[state='normal']
+{
+    background: #07c160;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
+}
+#add_friend_btn[state='hover']
+{
+    background: #3bbb4b;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
+}
+#add_friend_btn[state='press']
+{
+    background: #07c160;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
 }

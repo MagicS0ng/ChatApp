@@ -61,7 +61,7 @@ void MainWindow::SlotSwitchToChat()
     _chat_dlg->setWindowFlags(Qt::CustomizeWindowHint|Qt::FramelessWindowHint);
     stackedWidget->addWidget(_chat_dlg);
     stackedWidget->setCurrentWidget(_chat_dlg);
-    this->setMinimumSize(QSize(1050,900));
+    this->setMinimumSize(QSize(900,700));
     this->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
 }
 
