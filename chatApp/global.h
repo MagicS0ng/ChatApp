@@ -19,6 +19,7 @@ enum ReqId{
     ID_CHAT_LOGIN=1005,
     ID_CHAT_LOGIN_RSP=1006,
     ID_SEARCH_USER_REQ=1007,
+    ID_ADD_FRIEND_REQ=1008
 };
 enum Modules{
     REGISTERMOD=0,
@@ -80,5 +81,8 @@ struct MsgInfo
     QString contents;
     QPixmap pixMap;
 };
+constexpr int MIN_APPLY_LABEL_ED_LEN = 40;
+const QString add_prefix= "add tags";
+constexpr int tip_offset = 5;
 extern QString gate_url_prefix ;
 #endif // GLOBAL_H

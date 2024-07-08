@@ -13,6 +13,7 @@ DESTDIR = ./bin
 
 SOURCES += \
     adduseritem.cpp \
+    applyfriend.cpp \
     bubbleframe.cpp \
     chatdialog.cpp \
     chatitembase.cpp \
@@ -21,8 +22,10 @@ SOURCES += \
     chattingview.cpp \
     clickedbtn.cpp \
     clickedlabel.cpp \
+    clickedoncelabel.cpp \
     customizededit.cpp \
     findsuccessdlg.cpp \
+    friendlabel.cpp \
     global.cpp \
     httpmgr.cpp \
     listbaseitem.cpp \
@@ -45,6 +48,7 @@ SOURCES += \
 
 HEADERS += \
     adduseritem.h \
+    applyfriend.h \
     bubbleframe.h \
     chatdialog.h \
     chatitembase.h \
@@ -53,8 +57,10 @@ HEADERS += \
     chattingview.h \
     clickedbtn.h \
     clickedlabel.h \
+    clickedoncelabel.h \
     customizededit.h \
     findsuccessdlg.h \
+    friendlabel.h \
     global.h \
     httpmgr.h \
     listbaseitem.h \
@@ -77,9 +83,11 @@ HEADERS += \
 
 FORMS += \
     adduseritem.ui \
+    applyfriend.ui \
     chatdialog.ui \
     chatpage.ui \
     findsuccessdlg.ui \
+    friendlabel.ui \
     loadingdialog.ui \
     logindialog.ui \
     mainwindow.ui \

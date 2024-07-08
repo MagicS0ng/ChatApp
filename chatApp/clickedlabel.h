@@ -15,6 +15,8 @@ public:
     void leaveEvent(QEvent *event) override;
     void SetState(QString normal="", QString hover="", QString press="", QString select="", QString select_hover = "", QString select_press="");
     ClicklbState GetCurState();
+    bool SetCurState(ClicklbState state);
+    void ResetNormalState();
 private:
     QString m_normal;
     QString m_normal_hover;
@@ -24,7 +26,7 @@ private:
     QString m_selected_press;
     ClicklbState m_curstate;
 signals:
-    void  clicked(void);
+    void  clicked(QString, ClicklbState);
 
 };
 
