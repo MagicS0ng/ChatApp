@@ -33,7 +33,9 @@ signals:
     void sigSendData(ReqId reqId,QByteArray data);
     void sigSwitchChatDlg();
     void sigLoginFailed(int);
-    void sigUserSearch(std::shared_ptr<SearchInfo> si);
+    void sigUserSearch(std::shared_ptr<SearchInfo>);
+    void sig_add_auth_friend(std::shared_ptr<AddFriendApply>);
+    void sig_auth_rsp(std::shared_ptr<AuthRsp>);
 };
 
 #endif // TCPMGR_H

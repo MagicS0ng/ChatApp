@@ -33,6 +33,12 @@
     <ClCompile Include="ConfigMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChatGrpcClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RedisMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="config.ini" />
@@ -59,6 +65,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StatusServiceImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatGrpcClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RedisMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

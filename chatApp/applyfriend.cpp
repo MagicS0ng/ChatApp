@@ -190,14 +190,12 @@ void ApplyFriend::ShowMoreLabel()
     qDebug()<< "receive more label clicked";
     ui->more_lb_wid->hide();
 
-
-
     ui->lb_list->setFixedWidth(325);
     _tip_cur_point = QPoint(5,5);
     auto next_point = _tip_cur_point;
     int textWidth;
     int textHeight;
-    //重拍现有的label
+    //重排现有的label
     for(auto & added_key : _add_label_keys){
         auto added_lb = _add_labels[added_key];
 
@@ -207,7 +205,7 @@ void ApplyFriend::ShowMoreLabel()
         if(_tip_cur_point.x()+textWidth + tip_offset>ui->lb_list->width())
         {
             _tip_cur_point.setX(tip_offset);
-            _tip_cur_point.setX(_tip_cur_point.y()+textHeight+15);
+            _tip_cur_point.setY(_tip_cur_point.y()+textHeight+15);
         }
         added_lb->move(_tip_cur_point);
         next_point.setX(added_lb->pos().x() + textWidth + 15);
@@ -262,6 +260,45 @@ void ApplyFriend::SlotLabelEnter()
     addLabel(ui->lb_ed->text());
 
     ui->input_tip_wid->hide();
+    auto text = ui->lb_ed->text();
+    auto find_it = std::find(_tip_data.begin(),_tip_data.end(),text);
+    if(find_it==_tip_data.end())
+    {
+        _tip_data.push_back(text);
+    }
+    auto find_add = _add_labels.find(text);
+    if(find_add!=_add_labels.end())
+    {
+        find_add.value()->SetCurState(ClicklbState::Selected);
+        return ;
+    }
+    auto * lb = new ClickedLabel(ui->lb_list);
+    lb->SetState("normal", "hover", "pressed", "selected_normal",
+                 "selected_hover","selected_pressed");
+    lb->setObjectName("tipslb");
+    lb->setText(text);
+    connect(lb, &ClickedLabel::clicked, this , &ApplyFriend::SlotChangeFriendLabelByTip);
+    qDebug() << "ui->lb_list->width(): " << ui->lb_list->width();
+    qDebug() << "_tip_cur_point.x(): " << _tip_cur_point.x();
+
+    QFontMetrics fontMetrics(lb->font());
+    int textWidth = fontMetrics.horizontalAdvance(lb->text());
+    int textHeight = fontMetrics.height();
+    qDebug() << "textWidth: " << textWidth;
+    qDebug() << "textHeight: " << textHeight;
+    if(_tip_cur_point.x() + textWidth + tip_offset + 3 > ui->lb_list->width())
+    {
+        _tip_cur_point.setX(5);
+        _tip_cur_point.setY(_tip_cur_point.y()+textHeight+15);
+    }
+    auto next_point = _tip_cur_point;
+    AddTipLbs(lb, _tip_cur_point,next_point, textWidth, textHeight);
+    _tip_cur_point = next_point;
+    int diff_height = next_point.y()+textHeight+tip_offset-ui->lb_list->height();
+    ui->lb_list->setFixedHeight(next_point.y() + textHeight+tip_offset);
+    lb->SetCurState(ClicklbState::Selected);
+    ui->scrollContent->setFixedHeight(ui->scrollContent->height()+diff_height);
+
 
 }
 
@@ -350,7 +387,9 @@ void ApplyFriend::SlotAddFriendLabelByClickTip(QString text)
     }
     addLabel(text);
     //标签展示栏也增加一个标签, 并设置绿色选中
-    if (index != -1) {
+    auto find_it = std::find(_tip_data.begin(), _tip_data.end(),text);
+    if(find_it == _tip_data.end())
+    {
         _tip_data.push_back(text);
     }
 

@@ -18,7 +18,7 @@ async function GetVarifyCode(call, callback) {
         uniqueId = uniqueId.substring(0, 4);
       }
     }
-    let bres = await redisModule.SetRedisExpire(const_module.code_prefix+call.request.email, uniqueId, 600)
+    let bres = await redisModule.SetRedisExpire(const_module.code_prefix+call.request.email, uniqueId, 180)
     if(!bres)
         {
             callback(null, { 

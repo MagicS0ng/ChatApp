@@ -72,7 +72,7 @@
         <number>11</number>
        </property>
        <item>
-        <widget class="QLabel" name="apply_label">
+        <widget class="QLabel" name="apply_lb">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -112,7 +112,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Send </string>
+             <string>Send friend request</string>
             </property>
            </widget>
           </item>

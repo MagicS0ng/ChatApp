@@ -3,6 +3,7 @@
 #include "message.pb.h"
 #include "message.grpc.pb.h"
 #include "ConfigMgr.h"
+#include "RedisMgr.h"
 #include <mutex>
 #include <grpcpp/grpcpp.h>
 #include <boost/uuid/uuid.hpp>
@@ -37,5 +38,5 @@ private:
 	std::unordered_map < std::string, ChatServer> m_servers;
 	std::mutex m_server_mutex;
 	std::unordered_map <int, std::string> m_tokens;
-	std::mutex m_token_mutex;
+	//std::mutex m_token_mutex;
 };

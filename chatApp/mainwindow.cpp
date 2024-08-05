@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->setCurrentWidget(_login_dlg);
     connect(_login_dlg, &loginDialog::switchToReset,this, &MainWindow::SlotSwitchToReset);
     connect(TcpMgr::GetInstance().get(),&TcpMgr::sigSwitchChatDlg, this, &MainWindow::SlotSwitchToChat);
-    emit TcpMgr::GetInstance()->sigSwitchChatDlg();
+    // emit TcpMgr::GetInstance()->sigSwitchChatDlg();
 }
 
 MainWindow::~MainWindow()

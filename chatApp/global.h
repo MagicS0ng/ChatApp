@@ -68,6 +68,8 @@ enum ListItemType
     ADD_USER_TIP_ITEM,
     INVALID_ITEM,
     GROUP_TIP_ITEM,
+    LINE_ITEM,
+    APPLY_FRIEND_ITEM
 };
 
 enum ClicklbState
@@ -85,4 +87,30 @@ constexpr int MIN_APPLY_LABEL_ED_LEN = 40;
 const QString add_prefix= "add tags";
 constexpr int tip_offset = 5;
 extern QString gate_url_prefix ;
+const std::vector<QString>  strs ={"hello world !",
+                                   "nice to meet u",
+                                   "New year，new life",
+                                   "You have to love yourself",
+                                   "My love is written in the wind ever since the whole world is you"};
+
+const std::vector<QString> heads = {
+    ":/resourse/head_1.jpg",
+    ":/resourse/head_2.jpg",
+    ":/resourse/head_3.jpg",
+    ":/resourse/head_4.jpg",
+    ":/resourse/head_5.jpg"
+};
+
+const std::vector<QString> names = {
+    "HanMeiMei",
+    "Lily",
+    "Ben",
+    "Androw",
+    "Max",
+    "Summer",
+    "Candy",
+    "Hunter"
+};
+
+
 #endif // GLOBAL_H

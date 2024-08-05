@@ -47,6 +47,11 @@ enum ErrorCodes {
 	TokenInvalid = 1010,
 	UidInvalid=1011,
 };
+const std::string LOGIN_COUNT = "logincount";
+const std::string USERIPPREFIX = "uip_";
+const std::string USERTOKENPREFIX = "utoken_";
+const std::string IPCOUNTPREFIX = "ipcount_";
+const std::string USER_BASE_INFO = "ubaseinfo_";
 class Defer
 {
 public:

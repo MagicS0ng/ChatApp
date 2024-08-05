@@ -288,7 +288,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QListWidget" name="contacts_list">
+       <widget class="ContactUserList" name="contacts_list">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -309,7 +309,7 @@
       </size>
      </property>
      <widget class="ChatPage" name="chat_page"/>
-     <widget class="QWidget" name="friend_apply_page"/>
+     <widget class="ApplyFriendPage" name="friend_apply_page"/>
     </widget>
    </item>
   </layout>
@@ -346,6 +346,17 @@
    <class>SearchList</class>
    <extends>QListWidget</extends>
    <header location="global">searchlist.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ContactUserList</class>
+   <extends>QListWidget</extends>
+   <header location="global">contactuserlist.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ApplyFriendPage</class>
+   <extends>QWidget</extends>
+   <header location="global">applyfriendpage.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
