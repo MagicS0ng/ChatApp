@@ -9,10 +9,17 @@ CServer::~CServer()
 {
 
 }
-void CServer::ClearSession(std::string uid)
+void CServer::ClearSession(std::string sessionid)
 {
-	std::lock_guard<std::mutex> lock(m_mutex);
-	m_sessions.erase(uid);
+	if (m_sessions.find(sessionid) != m_sessions.end())
+	{
+		UserMgr::GetInstance()->RmvUserSession(m_sessions[sessionid]->GetUserId());
+	}
+	{
+		std::lock_guard<std::mutex> lock(m_mutex);
+		m_sessions.erase(sessionid);
+	}
+	
 }
 void CServer::HandleAccept(std::shared_ptr<CSession> new_session, const boost::system::error_code& error)
 {
@@ -20,7 +27,7 @@ void CServer::HandleAccept(std::shared_ptr<CSession> new_session, const boost::s
 	{
 		new_session->Start();
 		std::lock_guard<std::mutex> lock(m_mutex);
-		m_sessions.insert(std::make_pair(new_session->GetUuid(), new_session));
+		m_sessions.insert(std::make_pair(new_session->GetSessionId(), new_session));
 	}
 	else {
 		std::cout << "session accept failed, error is " << error.what() << std::endl;

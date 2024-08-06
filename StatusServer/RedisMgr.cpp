@@ -213,7 +213,7 @@ bool RedisMgr::HSet(const char* key, const char* hkey, const char* hvalue, size_
 		freeReplyObject(reply);
 		return false;
 	}
-	std::cout << "Execute command [ KSET " << key << hkey << " " << "] succeeded!\n";
+	std::cout << "Execute command [ HSET " << key << hkey << " " << "] succeeded!\n";
 	freeReplyObject(reply);
 	return true;
 }
@@ -243,7 +243,7 @@ std::string RedisMgr::HGet(const std::string& key, const std::string& hkey)
 		freeReplyObject(reply);
 		return "";
 	}
-	std::cout << "Execute command [ HSET " << key << hkey << " " << "] succeeded!\n";
+	std::cout << "Execute command [ HGET " << key << hkey << " " << "] succeeded!\n";
 	std::string value = reply->str;
 	freeReplyObject(reply);
 	return value;

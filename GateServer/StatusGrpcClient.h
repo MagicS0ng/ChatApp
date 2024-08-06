@@ -22,7 +22,7 @@ class StatusGrpcClient :public Singleton<StatusGrpcClient>
 public:
 	~StatusGrpcClient();
 	GetChatServerRsp GetChatServer(int uid);
-	//LoginRsp Login(int uid, std::string token);
+	LoginRsp Login(int uid, std::string token);
 private:
 	StatusGrpcClient();
 	std::unique_ptr<StatusConPool> m_pool;

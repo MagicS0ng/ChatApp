@@ -26,12 +26,32 @@
 
 struct UserInfo
 {
+	UserInfo()
+		:userName(""), userPwd(""), userEmail(""),
+		nick(""), desc(""), sex(0), icon(""), uid(0) {}
 	std::string userName;
 	std::string userPwd;
 	std::string userEmail;
+	std::string nick;
+	std::string desc;
+	int sex;
+	std::string icon;
 	int uid;
 };
-#define CODEPREFIX "code_"
+struct ApplyInfo
+{
+	ApplyInfo(int uid, std::string name, std::string desc, std::string icon, std::string nick, int sex, int status)
+		:_uid(uid), _name(name), _desc(desc),_icon(icon),_nick(nick),_sex(sex), _status(status)
+	{
+	}
+	int _uid;
+	std::string _name;
+	std::string _desc;
+	std::string _icon;
+	std::string _nick;
+	int _sex;
+	int _status;
+};
 namespace beast = boost::beast;
 namespace http = beast::http;
 namespace net = boost::asio;
@@ -62,6 +82,11 @@ enum ErrorCodes {
 	TokenInvalid = 1010,
 	UidInvalid = 1011,
 };
+const std::string LOGIN_COUNT = "logincount";
+const std::string USERIPPREFIX = "uip_";
+const std::string USERTOKENPREFIX = "utoken_";
+const std::string IPCOUNTPREFIX = "ipcount_";
+const std::string USER_BASE_INFO = "ubaseinfo_";
 class Defer
 {
 public:

@@ -4,6 +4,8 @@
 #include "StatusGrpcClient.h"
 #include "MysqlMgr.h"
 #include "LogicNode.h"
+#include "RedisMgr.h"
+#include "UserMgr.h"
 
 
 class LogicNode;
@@ -19,6 +21,7 @@ private:
 	void DealMsg();
 	void RegisterCallBack();
 	void LoginHandler(std::shared_ptr<CSession> session, const short& msg_id, const std::string& msg_data);
+	bool GetBaseInfo(std::string base_key, int uid, std::shared_ptr<UserInfo>& userinfo);
 private:
 	std::thread m_worker_thread;
 	std::queue < std::shared_ptr<LogicNode>> m_msg_que;
@@ -26,5 +29,5 @@ private:
 	std::condition_variable m_consume;
 	bool is_stop;
 	std::map<short, FunCallBack> m_func_callbacks;
-	std::unordered_map<int, std::shared_ptr<UserInfo>> m_users;
+	//std::unordered_map<int, std::shared_ptr<UserInfo>> m_users;
 };

@@ -19,7 +19,9 @@ public:
 	CSession(boost::asio::io_context & io_context, CServer * server);
 	~CSession();
 	tcp::socket &GetSocket();
-	std::string& GetUuid();
+	std::string& GetSessionId();
+	void SetUserId(int uid);
+	int GetUserId();
 	void Start();
 	void Send(std::string msg, short msgid);
 	void Send(char * msg, short max_length,short msgid);
@@ -37,7 +39,8 @@ private:
 private:
 	
 	tcp::socket m_socket;
-	std::string m_uuid;
+	std::string m_sessionid;
+	int m_userid;
 	char m_data[ChatSet::MAX_LENGTH];
 	CServer * m_server;
 	bool is_close ;
