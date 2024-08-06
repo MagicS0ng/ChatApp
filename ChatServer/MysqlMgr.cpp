@@ -24,6 +24,10 @@ bool MysqlMgr::UpdatePwd(const std::string& name, const std::string& newPwd)
 {
 	return m_dao.UpdatePwd(name, newPwd);
 }
+bool MysqlMgr::AddFriendReply(const int & uid, const int & touid)
+{
+	return m_dao.AddFriendReply(uid, touid);
+}
 bool MysqlMgr::CheckPwd(const std::string& email, const std::string& pwd, UserInfo& userInfo)
 {
 	return m_dao.CheckPwd(email, pwd, userInfo);
@@ -31,4 +35,8 @@ bool MysqlMgr::CheckPwd(const std::string& email, const std::string& pwd, UserIn
 std::shared_ptr<UserInfo> MysqlMgr::GetUser(int uid)
 {
 	return m_dao.GetUser(uid);
+}
+std::shared_ptr<UserInfo> MysqlMgr::GetUser(std::string name)
+{
+	return m_dao.GetUser(name);
 }

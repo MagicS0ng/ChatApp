@@ -9,6 +9,7 @@
 #include <QScrollBar>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 namespace Ui {
 class ApplyFriend;
 }

@@ -1,6 +1,5 @@
 #include "searchlist.h"
 
-#include "findsuccessdlg.h"
 
 SearchList::SearchList(QWidget *parent):QListWidget(parent), _send_pending(false), _find_dlg(nullptr),_search_box(nullptr)
 {
@@ -24,7 +23,7 @@ void SearchList::CloseFindDlg()
 
 void SearchList::SetSearchBox(QWidget *box)
 {
-
+    _search_box = box;
 }
 
 bool SearchList::eventFilter(QObject *watched, QEvent *event)
@@ -52,7 +51,18 @@ bool SearchList::eventFilter(QObject *watched, QEvent *event)
 
 void SearchList::waitPending(bool pending)
 {
-
+    if(pending)
+    {
+        _loadingDlg = new LoadingDlg(this);
+        _loadingDlg->setModal(true);
+        _loadingDlg->show();
+        _send_pending = true;
+    }else
+    {
+        _loadingDlg->hide();
+        _loadingDlg->deleteLater();
+        _send_pending = false;
+    }
 }
 
 void SearchList::slotItemClicked(QListWidgetItem *item)
@@ -77,22 +87,21 @@ void SearchList::slotItemClicked(QListWidgetItem *item)
     }
     if(itemType==ListItemType::ADD_USER_TIP_ITEM)
     {
-        qDebug() << "search.....";
-        _find_dlg = std::make_shared<FindSuccessDlg>(this);
-        auto si = std::make_shared<SearchInfo>(0,"nima","nima","nima",0);
-        std::dynamic_pointer_cast<FindSuccessDlg>(_find_dlg)->SetSearchInfo(si);
-        _find_dlg->show();
-        // std::dynamic_pointer_cast<FindSuccessDlg>(_find_dlg)->SetSearchInfo(si);
-        // if(_send_pending)
-        //     return ;
-        // waitPending(true);
-        // auto searchBox = dynamic_cast<CustomizedEdit *>(_search_box);
-        // auto uid_str = searchBox->text();
-        // QJsonObject jsonObj;
-        // jsonObj["uid"] = uid_str;
-        // QJsonDocument jsonDoc(jsonObj);
-        // QString jsonStr = jsonDoc.toJson(QJsonDocument::Indented);
-        // emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_SEARCH_USER_REQ, jsonStr.toUtf8());
+        if(_send_pending)
+            return ;
+        if(!_search_box)
+        {
+            qDebug() << "search box content is NULL";
+            return;
+        }
+        waitPending(true);
+        auto searchBox = dynamic_cast<CustomizedEdit *>(_search_box);
+        auto uid_str = searchBox->text();
+        QJsonObject jsonObj;
+        jsonObj["uid"] = uid_str;
+        QJsonDocument jsonDoc(jsonObj);
+        QByteArray jsonData = jsonDoc.toJson(QJsonDocument::Compact);
+        emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_SEARCH_USER_REQ, jsonData);
         return;
     }
     CloseFindDlg();
@@ -100,6 +109,20 @@ void SearchList::slotItemClicked(QListWidgetItem *item)
 
 void SearchList::slotUserSearch(std::shared_ptr<SearchInfo> si)
 {
+    waitPending(false);
+    if(si == nullptr)
+    {
+        _find_dlg = std::make_shared<FindFailedDlg>(this);
+        qDebug() << "Search User Failed";
+    }else
+    {
+        // 查找对象已经是好友
+        // 查找对象不是好友
+        _find_dlg = std::make_shared<FindSuccessDlg>(this);
+        std::dynamic_pointer_cast<FindSuccessDlg>(_find_dlg)->SetSearchInfo(si);
+        qDebug() << "Search User Success";
+    }
+    _find_dlg->show();
 
 }
 

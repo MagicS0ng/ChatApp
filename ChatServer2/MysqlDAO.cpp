@@ -112,6 +112,41 @@ bool MysqlDAO::UpdatePwd(const std::string& name, const std::string& newpwd)
 		return false;
 	}
 }
+bool MysqlDAO::AddFriendReply(const int& uid, const int& touid)
+{
+	auto con = m_pool->getConnection();
+	if (con = nullptr)
+	{
+		return false;
+	}
+	Defer defer([this, &con]
+	{
+		m_pool->returnConnection(std::move(con));
+	});
+	try
+	{
+		std::unique_ptr<sql::PreparedStatement> pstmt(con->m_con->prepareStatement("INSERT INTO friend_apply (from_uid, to_uid) values (?, ?)"
+		"ON DUPLICATE KEY UPDATE from_uid = from_uid, to_uid = to_uid"
+		));
+		pstmt->setInt(1, uid);
+		pstmt->setInt(2, touid);
+		int rowAffected = pstmt->executeUpdate();
+		if (rowAffected < 0)
+		{
+			return false;
+		}
+		return true;
+	}
+	catch (sql::SQLException& e)
+	{
+		m_pool->returnConnection(std::move(con));
+		std::cerr << "SQLException: " << e.what();
+		std::cerr << " (MySQL error code: " << e.getErrorCode();
+		std::cerr << ", SQLState: " << e.getSQLState() << " )\n";
+		return false;
+	}
+	return true;
+}
 bool  MysqlDAO::CheckPwd(const std::string& email, const std::string& pwd,  UserInfo& userInfo)
 {
 	auto con = m_pool->getConnection();
@@ -188,5 +223,43 @@ std::shared_ptr<UserInfo> MysqlDAO::GetUser(int uid)
 		return nullptr;
 
 
+	}
+}
+
+std::shared_ptr<UserInfo> MysqlDAO::GetUser(std::string name)
+{
+	auto con = m_pool->getConnection();
+	if (con == nullptr)
+	{
+		return nullptr;
+	}
+	Defer defer([this, &con]()
+		{
+			m_pool->returnConnection(std::move(con));
+		});
+	try
+	{
+		std::unique_ptr<sql::PreparedStatement> pstmt(con->m_con->prepareStatement("SELECT * FROM user WHERE name = ?"));
+		pstmt->setString(1, name);
+		std::unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+		std::unique_ptr<UserInfo> user_ptr = nullptr;
+		while (res->next())
+		{
+			user_ptr.reset(new UserInfo);
+			user_ptr->uid = res->getInt("uid");
+			user_ptr->userEmail = res->getString("email");
+			user_ptr->userName = res->getString("name");
+			user_ptr->nick = res->getString("nick");
+			user_ptr->desc = res->getString("desc");
+			user_ptr->sex = res->getInt("sex");
+			break;
+		}return user_ptr;
+	}
+	catch(sql::SQLException & e)
+	{
+		std::cerr << "SQLException: " << e.what();
+		std::cerr << " (MySQL error code: " << e.getErrorCode();
+		std::cerr << ", SQLState: " << e.getSQLState() << ")" << std::endl;
+		return nullptr;
 	}
 }

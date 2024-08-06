@@ -183,8 +183,8 @@ void loginDialog::slotTcpConFinished(bool isSuccess)
         jsonObj["uid"] = m_uid;
         jsonObj["token"] = m_token;
         QJsonDocument doc(jsonObj);
-        QString jsonString = doc.toJson(QJsonDocument::Indented);
-        emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_CHAT_LOGIN, jsonString.toUtf8());
+        QByteArray jsonBytes = doc.toJson(QJsonDocument::Indented);
+        emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_CHAT_LOGIN, jsonBytes);
     }else
     {
         showErr(tr("Network Err"));

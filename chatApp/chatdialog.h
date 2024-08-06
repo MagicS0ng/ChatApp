@@ -9,7 +9,8 @@
 #include <QKeyEvent>
 #include "msgcards.h"
 #include "statewidget.h"
-#include "loadingdialog.h"
+#include "loadingdlg.h"
+#include "userdata.h"
 #include <QMessageBox>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -47,6 +48,7 @@ private slots:
     void SlotSideChat();
     void slotLoadingChatFriends();
     void slotTextChanged(const QString &str);
+    void slot_apply_friend(std::shared_ptr<AddFriendApply> apply);
 };
 
 #endif // CHATDIALOG_H

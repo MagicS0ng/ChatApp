@@ -26,7 +26,7 @@ private:
     QMap<ReqId, std::function<void(ReqId id, int len, QByteArray data)>> _handlers;
     TcpMgr();
 public slots:
-    void slotSendData(ReqId reqId, QString data);
+    void slotSendData(ReqId reqId, QByteArray data);
     void slotTcpConnect(ServerInfo);
 signals:
     void sigConSuccess(bool isSuccess); // 连接成功，发送给其他窗口信号
@@ -34,6 +34,7 @@ signals:
     void sigSwitchChatDlg();
     void sigLoginFailed(int);
     void sigUserSearch(std::shared_ptr<SearchInfo>);
+    void sig_friend_apply(std::shared_ptr<AddFriendApply>);
     void sig_add_auth_friend(std::shared_ptr<AddFriendApply>);
     void sig_auth_rsp(std::shared_ptr<AuthRsp>);
 };

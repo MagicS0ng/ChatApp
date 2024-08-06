@@ -5,12 +5,13 @@
 class SearchInfo
 {
 public:
-    SearchInfo(int uid, QString name, QString nick, QString des, int gender);
+    SearchInfo(int uid, QString name, QString nick, QString des, int sex, QString icon);
     int _uid;
     QString _name;
     QString _nick;
     QString _desc;
-    int _gender;
+    int _sex;
+    QString _icon;
 };
 struct AuthInfo
 {
@@ -69,11 +70,14 @@ struct UserInfo
 class AddFriendApply
 {
 public:
-    AddFriendApply(int from_uid, QString name, QString desc)
-        :_from_uid(from_uid), _name(name), _desc(desc){};
+    AddFriendApply(int from_uid, QString name, QString desc, QString icon, QString nick, int sex)
+        :_from_uid(from_uid), _name(name), _desc(desc), _icon(icon), _nick(nick), _sex(sex){};
     int _from_uid;
     QString _name;
     QString _desc;
+    QString _icon;
+    QString _nick;
+    int     _sex;
 
 };
 struct ApplyInfo

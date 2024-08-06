@@ -16,6 +16,8 @@ public:
     int GetUid();
     QString GetName();
     std::vector<std::shared_ptr<ApplyInfo>> GetApplyList();
+    bool AlreadyApply(int uid);
+    void AddApplyList(std::shared_ptr<ApplyInfo> & app);
 private:
     QString m_name;
     QString m_token;

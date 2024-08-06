@@ -10,8 +10,10 @@
 #include "userdata.h"
 #include "tcpmgr.h"
 #include "AddUserItem.h"
-#include "loadingdialog.h"
+#include "loadingdlg.h"
 #include "customizededit.h"
+#include "findfaileddlg.h"
+#include "findsuccessdlg.h"
 
 class SearchList: public QListWidget
 {
@@ -29,7 +31,7 @@ private:
     bool _send_pending;
     std::shared_ptr<QDialog> _find_dlg;
     QWidget * _search_box;
-    loadingDialog * _loadingDlg;
+    LoadingDlg * _loadingDlg;
 private slots:
     void slotItemClicked(QListWidgetItem * item);
     void slotUserSearch(std::shared_ptr<SearchInfo> si);

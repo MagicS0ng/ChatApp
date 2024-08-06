@@ -35,7 +35,7 @@ int main()
 			{
 				server->Wait();
 			});
-		boost::asio::io_context io_context;
+		boost::asio::io_context io_context;	
 		boost::asio::signal_set signals(io_context, SIGINT, SIGTERM); // SIGINT:C-c
 		signals.async_wait([&io_context, pool, &server](auto, auto) // 异步等待, 触发SIGINT SIGTERM 停掉服务
 			{

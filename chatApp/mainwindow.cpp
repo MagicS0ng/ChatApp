@@ -31,7 +31,7 @@ void MainWindow::SlotSwitchToSignup()
     stackedWidget->addWidget(_signup_dlg);
     stackedWidget->setCurrentWidget(_signup_dlg);
     connect(_signup_dlg, &signupDialog::backToLogin, this, &MainWindow::SlotBackToLogin);
-    // connect(_signup_dlg, &signupDialog::sigSwitchLogin, this, &MainWindow::SlotBackToLogin);
+    connect(_signup_dlg, &signupDialog::sigSwitchLogin, this, &MainWindow::SlotBackToLogin);
 }
 void MainWindow::SlotBackToLogin()
 {

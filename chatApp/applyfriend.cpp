@@ -444,10 +444,10 @@ void ApplyFriend::SlotApplySure()
     jsonObj["touid"] = _si->_uid;
 
     QJsonDocument doc(jsonObj);
-    QString jsonString = doc.toJson(QJsonDocument::Indented);
+    QByteArray jsonBytes = doc.toJson(QJsonDocument::Compact);
 
     //发送tcp请求给chat server
-    emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_ADD_FRIEND_REQ, jsonString.toUtf8());
+    emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_ADD_FRIEND_REQ, jsonBytes);
     this->hide();
     deleteLater();
 }

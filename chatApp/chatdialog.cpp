@@ -59,6 +59,8 @@ chatDialog::chatDialog(QWidget *parent)
     connect(ui->search_box,&QLineEdit::textChanged,this, &chatDialog::slotTextChanged);
     this->installEventFilter(this);
     ui->side_chat_wd->SetSelected(true);
+    ui->search_candidates_list->SetSearchBox(ui->search_box);
+    connect(TcpMgr::GetInstance().get(), &TcpMgr::sig_friend_apply, this, &chatDialog::slot_apply_friend);
 }
 
 chatDialog::~chatDialog()
@@ -173,7 +175,7 @@ void chatDialog::slotLoadingChatFriends()
         return ;
     }
     is_loading=true;
-    loadingDialog * loading_dlg =  new loadingDialog(this);
+    LoadingDlg * loading_dlg =  new LoadingDlg(this);
     loading_dlg->setModal(true);
     loading_dlg->show();
     qDebug() << "add new msg cards...";
@@ -218,6 +220,22 @@ void chatDialog::slotTextChanged(const QString &str)
     {
         showSearch(true);
     }
+}
+
+void chatDialog::slot_apply_friend(std::shared_ptr<AddFriendApply> apply)
+{
+    qDebug() << "receive apply friend slot, applyuid is " << apply->_from_uid << " name is "
+             << apply->_name << " desc is " << apply->_desc;
+
+    bool b_already = UserMgr::GetInstance()->AlreadyApply(apply->_from_uid);
+    if(b_already){
+        return;
+    }
+
+    // UserMgr::GetInstance()->AddApplyList(std::make_shared<ApplyInfo>(apply));
+    // ui->side_contact_lb->ShowRedPoint(true);
+    // ui->con_user_list->ShowRedPoint(true);
+    ui->friend_apply_page->AddNewApply(apply);
 }
 
 
