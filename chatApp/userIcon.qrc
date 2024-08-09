@@ -36,5 +36,19 @@
         <file>resourse/smile_hover.png</file>
         <file>resourse/smile_press.png</file>
         <file>resourse/tipclose.png</file>
+        <file>resourse/arowdown.png</file>
+        <file>resourse/female.png</file>
+        <file>resourse/ice.png</file>
+        <file>resourse/male.png</file>
+        <file>resourse/msg_chat_hover.png</file>
+        <file>resourse/msg_chat_normal.png</file>
+        <file>resourse/msg_chat_press.png</file>
+        <file>resourse/red_point.png</file>
+        <file>resourse/video_chat_hover.png</file>
+        <file>resourse/video_chat_normal.png</file>
+        <file>resourse/video_chat_press.png</file>
+        <file>resourse/voice_chat_hover.png</file>
+        <file>resourse/voice_chat_normal.png</file>
+        <file>resourse/voice_chat_press.png</file>
     </qresource>
 </RCC>

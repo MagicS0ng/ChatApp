@@ -651,3 +651,38 @@ ApplyFriendItem #addBtn[state='press'] {
     font-family: "Microsoft YaHei";
 
 }
+#AuthenFriend
+{
+    border: 2px solid #f1f1f1;
+    font-size: 12px;
+    background: #f7f7f8;
+}
+#red_point
+{
+    border-image: url(:/resourse/red_point.png);
+}
+#FindFailedDlg
+{
+    background-color: #ffffff;
+}
+#failed_tip, #failed_tip2
+{
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+#failed_sure_btn[state="normal"]
+{
+    background: #07c160;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
+}
+#failed_sure_btn[state="hover"]
+{
+    background: #3bbb4b;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    border-radius: 20px;
+}

@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include "global.h"
 #include <QKeyEvent>
+#include <QListWidgetItem>
 #include "msgcards.h"
 #include "statewidget.h"
 #include "loadingdlg.h"
@@ -36,6 +37,10 @@ private:
     void showSearch(bool isSearch);
     void AddLBGroup(StateWidget * lb);
     void keyPressEvent(QKeyEvent *event) override;
+    void SetSelectChatItem(int uid = 0);
+    void SetSelectChatPage(int uid = 0);
+    void loadMoreChatUser();
+    void loadMoreConUser();
 private:
     Ui::chatDialog *ui;
     ChatUIMode m_state;
@@ -43,12 +48,20 @@ private:
     bool is_loading;
     QList<StateWidget*> _lb_list;
     QMap<ReqId, std::function<void(const QJsonObject&)>> _handlers;
+    QMap<int, QListWidgetItem*> _chat_items_added;
+    int _cur_chat_uid;
 private slots:
     void SlotSideContact();
     void SlotSideChat();
     void slotLoadingChatFriends();
     void slotTextChanged(const QString &str);
+    void slot_loading_contact_user();
+public slots:
     void slot_apply_friend(std::shared_ptr<AddFriendApply> apply);
+    void slot_add_auth_friend(std::shared_ptr<AuthInfo> auth_info);
+    void slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp);
+    void slot_jump_chat_item(std::shared_ptr<SearchInfo> si);
+    void slot_side_chat();
 };
 
 #endif // CHATDIALOG_H

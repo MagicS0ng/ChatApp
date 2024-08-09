@@ -2,6 +2,7 @@
 #define MSGCARDS_H
 
 #include "listbaseitem.h"
+#include "userdata.h"
 
 namespace Ui {
 class msgCards;
@@ -13,16 +14,14 @@ class msgCards : public ListBaseItem
 
 public:
     explicit msgCards(QWidget *parent = nullptr);
-     ~msgCards();
-     QSize sizeHint() const override;
-
-    void SetInfo(QString name, QString avatar, QString msg);
+    ~msgCards();
+    QSize sizeHint() const override;
+    std::shared_ptr<UserInfo> GetUserInfo();
+    void SetInfo(std::shared_ptr<UserInfo> user_info);
 
 private:
     Ui::msgCards *ui;
-    QString m_name;
-    QString m_avatar;
-    QString m_msg;
+    std::shared_ptr<UserInfo> _user_info;
 };
 
 #endif // MSGCARDS_H

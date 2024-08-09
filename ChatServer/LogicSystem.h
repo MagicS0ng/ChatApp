@@ -23,10 +23,13 @@ private:
 	void LoginHandler(std::shared_ptr<CSession> session, const short& msg_id, const std::string& msg_data);
 	void SearchInfo(std::shared_ptr<CSession>, const short &, const std::string &);
 	void AddFriendApply(std::shared_ptr<CSession>, const short&, const std::string&);
+	void AuthFriendApply(std::shared_ptr<CSession>session, const short& msg_id, const std::string& msg_data);
 	bool GetBaseInfo(std::string base_key, int uid, std::shared_ptr<UserInfo>& userinfo);
 	bool isPureDigit(const std::string& str);
 	void GetUserByName(const std::string & name, Json::Value &rtvalue);
 	void GetUserByUid(const std::string & uid_str, Json::Value &rtvalue);
+	bool GetFriendApplyInfo(int to_uid, std::vector<std::shared_ptr<ApplyInfo>>& list);
+	bool GetFriendList(int, std::vector<std::shared_ptr<UserInfo>>&);
 private:
 	std::thread m_worker_thread;
 	std::queue < std::shared_ptr<LogicNode>> m_msg_que;

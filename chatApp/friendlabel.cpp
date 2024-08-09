@@ -48,5 +48,5 @@ QString FriendLabel::Text()
 
 void FriendLabel::SlotClose()
 {
-    emit SigClose(_text);
+    emit sig_close(_text);
 }

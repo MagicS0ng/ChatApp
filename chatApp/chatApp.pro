@@ -17,6 +17,7 @@ SOURCES += \
     applyfrienditem.cpp \
     applyfriendlist.cpp \
     applyfriendpage.cpp \
+    authenfriend.cpp \
     bubbleframe.cpp \
     chatdialog.cpp \
     chatitembase.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     applyfrienditem.h \
     applyfriendlist.h \
     applyfriendpage.h \
+    authenfriend.h \
     bubbleframe.h \
     chatdialog.h \
     chatitembase.h \
@@ -100,6 +102,7 @@ FORMS += \
     applyfriend.ui \
     applyfrienditem.ui \
     applyfriendpage.ui \
+    authenfriend.ui \
     chatdialog.ui \
     chatpage.ui \
     conuseritem.ui \
@@ -137,3 +140,4 @@ CONFIG(debug, debug| release)
     static_dir = $$replace(static_dir,/,\\)
     QMAKE_POST_LINK += xcopy /Y /E /I  \"$$static_dir\" \"$$OutputDir\\static\\\"
 }
+win32-msvc*:QMAKE_CXXFLAGS += /wd"4819" /utf-8

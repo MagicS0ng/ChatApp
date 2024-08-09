@@ -1,0 +1,6 @@
+﻿  tcpmgr.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  chatApp.vcxproj -> D:\QTmmm\chatApp\bin\chatApp.exe
+  xcopy /Y /E /I ".\static" ".\.\bin\static\"
+  .\static\head_1.jpg
+  1 File(s) copied

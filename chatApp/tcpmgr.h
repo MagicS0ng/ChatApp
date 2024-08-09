@@ -4,6 +4,7 @@
 #include <QTcpSocket>
 #include <QAbstractSocket>
 #include <QJsonDocument>
+#include <QJsonArray>
 #include <QJsonObject>
 #include "UserMgr.h"
 #include "userdata.h"
@@ -35,7 +36,7 @@ signals:
     void sigLoginFailed(int);
     void sigUserSearch(std::shared_ptr<SearchInfo>);
     void sig_friend_apply(std::shared_ptr<AddFriendApply>);
-    void sig_add_auth_friend(std::shared_ptr<AddFriendApply>);
+    void sig_add_auth_friend(std::shared_ptr<AuthInfo>);
     void sig_auth_rsp(std::shared_ptr<AuthRsp>);
 };
 

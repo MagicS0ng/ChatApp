@@ -26,7 +26,7 @@ private:
 public slots:
     void SlotClose();
 signals:
-    void SigClose(QString);
+    void sig_close(QString);
 };
 
 #endif // FRIENDLABEL_H

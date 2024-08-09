@@ -1,6 +1,6 @@
 #include "chattingfriendslist.h"
 
-ChattingFriendsList::ChattingFriendsList(QWidget * parent):QListWidget(parent)
+ChattingFriendsList::ChattingFriendsList(QWidget * parent):QListWidget(parent),_loading_pending(false)
 {
     Q_UNUSED(parent);
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -32,7 +32,24 @@ bool ChattingFriendsList::eventFilter(QObject *watched, QEvent *event)
         int currentValue = scrollBar->value();
         if(maxScrollValue - currentValue <=0)
         {
+            auto b_loaded = UserMgr::GetInstance()->IsLoadChatFin();
+            if(b_loaded)
+            {
+                return  true;
+            }
+            if(_loading_pending)
+            {
+                return true;
+            }
+
             qDebug() << "load more friends";
+            _loading_pending = true;
+            QTimer::singleShot(100, [this]()
+                               {
+                _loading_pending = false;
+                QCoreApplication::quit();
+            });
+
             emit sigLoadingChatFriends();
         }
         return true;

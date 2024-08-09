@@ -146,6 +146,7 @@ void ApplyFriend::addLabel(QString name)
 {
     if(_friend_labels.find(name)!=_friend_labels.end())
     {
+        ui->lb_ed->clear();
         return ;
     }
     auto tmpLabel = new FriendLabel(ui->gridWidget);
@@ -165,7 +166,7 @@ void ApplyFriend::addLabel(QString name)
     tmpLabel->show();
     _friend_labels[tmpLabel->Text()] = tmpLabel;
     _friend_label_keys.push_back(tmpLabel->Text());
-    connect(tmpLabel, &FriendLabel::SigClose,this, &ApplyFriend::SlotRemoveFriendLabel);
+    connect(tmpLabel, &FriendLabel::sig_close,this, &ApplyFriend::SlotRemoveFriendLabel);
     _label_point.setX(_label_point.x() + tmpLabel->Width()+2);
     if(_label_point.x() + MIN_APPLY_LABEL_ED_LEN > ui->gridWidget->width())
     {
@@ -426,8 +427,8 @@ void ApplyFriend::SlotAddFriendLabelByClickTip(QString text)
 void ApplyFriend::SlotApplySure()
 {
     QJsonObject jsonObj;
-    auto uid = UserMgr::GetInstance()->GetUid();
-    jsonObj["uid"] = uid;
+    auto user_info = UserMgr::GetInstance()->GetUserInfo();
+    jsonObj["uid"] = user_info->_uid;
     auto name = ui->name_ed->text();
     if(name.isEmpty()){
         name = ui->name_ed->placeholderText();
@@ -445,7 +446,6 @@ void ApplyFriend::SlotApplySure()
 
     QJsonDocument doc(jsonObj);
     QByteArray jsonBytes = doc.toJson(QJsonDocument::Compact);
-
     //发送tcp请求给chat server
     emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_ADD_FRIEND_REQ, jsonBytes);
     this->hide();

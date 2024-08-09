@@ -10,7 +10,7 @@
 #include <unordered_map>
 #include "userdata.h"
 #include "applyfrienditem.h"
-// #include "authenfriend.h"
+#include "authenfriend.h"
 #include "UserMgr.h"
 #include "tcpmgr.h"
 namespace Ui {

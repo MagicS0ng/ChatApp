@@ -28,7 +28,7 @@ struct UserInfo
 {
 	UserInfo()
 		:userName(""), userPwd(""), userEmail(""),
-		nick(""), desc(""), sex(0), icon(""), uid(0) {}
+		nick(""), desc(""), sex(0), icon(""), uid(0), back("") {}
 	std::string userName;
 	std::string userPwd;
 	std::string userEmail;
@@ -37,6 +37,7 @@ struct UserInfo
 	int sex;
 	std::string icon;
 	int uid;
+	std::string back;
 };
 struct ApplyInfo
 {

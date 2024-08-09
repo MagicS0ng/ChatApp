@@ -116,7 +116,19 @@ void SearchList::slotUserSearch(std::shared_ptr<SearchInfo> si)
         qDebug() << "Search User Failed";
     }else
     {
+        // 查找对象是自己
+        auto self_uid = UserMgr::GetInstance()->GetUid();
+        if(si->_uid==self_uid)
+        {
+            return ;
+        }
         // 查找对象已经是好友
+        bool bExist = UserMgr::GetInstance()->CheckFriendById(si->_uid);
+        if(bExist)
+        {
+            emit sig_jump_chat_item(si);
+            return ;
+        }
         // 查找对象不是好友
         _find_dlg = std::make_shared<FindSuccessDlg>(this);
         std::dynamic_pointer_cast<FindSuccessDlg>(_find_dlg)->SetSearchInfo(si);
@@ -125,6 +137,7 @@ void SearchList::slotUserSearch(std::shared_ptr<SearchInfo> si)
     _find_dlg->show();
 
 }
+
 
 void SearchList::addTipItem()
 {

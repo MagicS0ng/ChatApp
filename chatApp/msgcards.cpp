@@ -21,15 +21,21 @@ QSize msgCards::sizeHint() const
 
 }
 
-void msgCards::SetInfo(QString name, QString avatar, QString msg)
+std::shared_ptr<UserInfo> msgCards::GetUserInfo()
 {
-    m_name = name;
-    m_avatar = avatar;
-    m_msg = msg;
+    return _user_info;
+}
 
-    QPixmap pxmap(m_avatar);
-    ui->icon_lb->setPixmap(pxmap.scaled(ui->icon_lb->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+void msgCards::SetInfo(std::shared_ptr<UserInfo> user_info)
+{
+    _user_info = user_info;
+    // 加载图片
+    QPixmap pixmap(_user_info->_icon);
+
+    // 设置图片自动缩放
+    ui->icon_lb->setPixmap(pixmap.scaled(ui->icon_lb->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->icon_lb->setScaledContents(true);
-    ui->friend_id->setText(m_name);
-    ui->friend_msg->setText(m_msg);
+
+    ui->friend_id->setText(_user_info->_name);
+    ui->friend_msg->setText(_user_info->_last_msg);
 }
