@@ -217,3 +217,14 @@ bool UserMgr::IsLoadConFin()
     return false;
 }
 
+void UserMgr::AppendFriendChatMsg(int friend_id, std::vector<std::shared_ptr<TextChatData> > msgs)
+{
+    auto find_iter = _friend_map.find(friend_id);
+    if(find_iter == _friend_map.end()){
+        qDebug()<<"append friend uid  " << friend_id << " not found";
+        return;
+    }
+
+    find_iter.value()->AppendChatMsgs(msgs);
+}
+

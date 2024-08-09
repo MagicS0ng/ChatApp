@@ -94,7 +94,7 @@ struct FriendInfo {
         _name(auth_rsp->_name),_nick(auth_rsp->_nick),_icon(auth_rsp->_icon),
         _sex(auth_rsp->_sex){}
 
-    // void AppendChatMsgs(const std::vector<std::shared_ptr<TextChatData>> text_vec);
+    void AppendChatMsgs(const std::vector<std::shared_ptr<TextChatData>> text_vec);
     int _uid;
     QString _name;
     QString _nick;

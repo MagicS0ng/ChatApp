@@ -33,6 +33,7 @@ public:
     std::vector<std::shared_ptr<FriendInfo>> GetConListPerPage();
     void UpdateContactLoadedCount();
     bool IsLoadConFin();
+    void AppendFriendChatMsg(int friend_id,std::vector<std::shared_ptr<TextChatData>>);
 private:
     QString m_name;
     QString m_token;

@@ -3,7 +3,8 @@
 
 chatDialog::chatDialog(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::chatDialog),m_state(ChatUIMode::ChatMode), m_mode(ChatUIMode::ChatMode), is_loading(false), _cur_chat_uid(0)
+    , ui(new Ui::chatDialog),m_state(ChatUIMode::ChatMode), m_mode(ChatUIMode::ChatMode), is_loading(false), _cur_chat_uid(0),
+    _last_widget(nullptr)
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags()|Qt::FramelessWindowHint);
@@ -60,6 +61,9 @@ chatDialog::chatDialog(QWidget *parent)
     this->installEventFilter(this);
     ui->side_chat_wd->SetSelected(true);
     ui->search_candidates_list->SetSearchBox(ui->search_box);
+
+    SetSelectChatItem();
+    SetSelectChatPage();
     connect(TcpMgr::GetInstance().get(), &TcpMgr::sig_friend_apply, this, &chatDialog::slot_apply_friend);
     //连接认证添加好友信号
     connect(TcpMgr::GetInstance().get(), &TcpMgr::sig_add_auth_friend, this, &chatDialog::slot_add_auth_friend);
@@ -70,9 +74,23 @@ chatDialog::chatDialog(QWidget *parent)
     //
     connect(ui->search_candidates_list, &SearchList::sig_jump_chat_item, this,
             &chatDialog::slot_jump_chat_item);
+    connect(ui->friend_info_page, &FriendInfoPage::sig_jump_chat_item, this,
+            &chatDialog::slot_jump_chat_item_from_info_page);
     // 加载联系人
     connect(ui->contacts_list, &ContactUserList::sig_loading_contact_user, this,
             &chatDialog::slot_loading_contact_user);
+
+    connect(ui->contacts_list, &ContactUserList::sig_switch_friend_info_page, this,
+            &chatDialog::slot_friend_info_page);
+    connect(ui->contacts_list, &ContactUserList::sig_switch_apply_friend_page, this,
+            &chatDialog::slot_switch_apply_friend_page);
+    ui->stackedWidget->setCurrentWidget(ui->chat_page);
+    connect(ui->chatting_friends_list, &QListWidget::itemClicked, this, &chatDialog::slot_item_clicked);
+    // 连接对端消息通知
+    connect(TcpMgr::GetInstance().get(), &TcpMgr::sig_text_chat_msg,
+            this, &chatDialog::slot_text_chat_msg);
+
+    connect(ui->chat_page, &ChatPage::sig_append_send_chat_msg, this, &chatDialog::slot_append_send_chat_msg);
 }
 
 chatDialog::~chatDialog()
@@ -148,6 +166,8 @@ void chatDialog::ClearLabelState(StateWidget *lb)
         ele->ClearState();
     }
 }
+
+
 
 bool chatDialog::eventFilter(QObject *watched, QEvent *event)
 {
@@ -526,6 +546,16 @@ void chatDialog::loadMoreConUser()
     }
 }
 
+void chatDialog::UpdateChatMsg(std::vector<std::shared_ptr<TextChatData> > msgdata)
+{
+    for(auto &msg: msgdata)
+    {
+        if(msg->_from_uid!=_cur_chat_uid)
+            break;
+        ui->chat_page->AppendChatMsg(msg);
+    }
+}
+
 void chatDialog::slot_side_chat()
 {
     qDebug()<< "receive side chat clicked";
@@ -533,6 +563,165 @@ void chatDialog::slot_side_chat()
     ui->stackedWidget->setCurrentWidget(ui->chat_page);
     m_state = ChatUIMode::ChatMode;
     showSearch(false);
+}
+
+void chatDialog::slot_friend_info_page(std::shared_ptr<UserInfo> user_info)
+{
+    qDebug() << "receive switch friend info page sig";
+    _last_widget = ui->friend_info_page;
+    ui->stackedWidget->setCurrentWidget(ui->friend_info_page);
+    ui->friend_info_page->SetInfo(user_info);
+}
+
+void chatDialog::slot_switch_apply_friend_page()
+{
+    qDebug() << "receive switch apply friend page";
+    _last_widget = ui->friend_apply_page;
+    ui->stackedWidget->setCurrentWidget(ui->friend_apply_page);
+}
+
+void chatDialog::slot_jump_chat_item_from_info_page(std::shared_ptr<UserInfo> user_info)
+{
+    qDebug() << "slot jump chat item ";
+    auto find_iter = _chat_items_added.find(user_info->_uid);
+    if(find_iter != _chat_items_added.end()){
+        qDebug() << "jump to chat item , uid is " << user_info->_uid;
+        ui->chatting_friends_list->scrollToItem(find_iter.value());
+        ui->side_chat_wd->SetSelected(true);
+        SetSelectChatItem(user_info->_uid);
+        //更新聊天界面信息
+        SetSelectChatPage(user_info->_uid);
+        slot_side_chat();
+        return;
+    }
+
+    //如果没找到，则创建新的插入listwidget
+
+    auto* chat_user_wid = new msgCards();
+    chat_user_wid->SetInfo(user_info);
+    QListWidgetItem* item = new QListWidgetItem;
+    //qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+    item->setSizeHint(chat_user_wid->sizeHint());
+    ui->chatting_friends_list->insertItem(0, item);
+    ui->chatting_friends_list->setItemWidget(item, chat_user_wid);
+
+    _chat_items_added.insert(user_info->_uid, item);
+
+    ui->side_chat_wd->SetSelected(true);
+    SetSelectChatItem(user_info->_uid);
+    //更新聊天界面信息
+    SetSelectChatPage(user_info->_uid);
+    slot_side_chat();
+}
+
+void chatDialog::slot_item_clicked(QListWidgetItem *item)
+{
+    QWidget *widget = ui->chatting_friends_list->itemWidget(item); // 获取自定义widget对象
+    if(!widget){
+        qDebug()<< "slot item clicked widget is nullptr";
+        return;
+    }
+
+    // 对自定义widget进行操作， 将item 转化为基类ListItemBase
+    ListBaseItem *customItem = qobject_cast<ListBaseItem*>(widget);
+    if(!customItem){
+        qDebug()<< "slot item clicked widget is nullptr";
+        return;
+    }
+
+    auto itemType = customItem->GetItemType();
+    if(itemType == ListItemType::INVALID_ITEM
+        || itemType == ListItemType::GROUP_TIP_ITEM){
+        qDebug()<< "slot invalid item clicked ";
+        return;
+    }
+
+
+    if(itemType == ListItemType::CHAT_FRIEND_ITEM){
+        // 创建对话框，提示用户
+        qDebug()<< "contact user item clicked ";
+
+        auto chat_wid = qobject_cast<msgCards*>(customItem);
+        auto user_info = chat_wid->GetUserInfo();
+        //跳转到聊天界面
+        ui->chat_page->SetUserInfo(user_info);
+        _cur_chat_uid = user_info->_uid;
+        return;
+    }
+}
+
+void chatDialog::slot_append_send_chat_msg(std::shared_ptr<TextChatData> msgdata)
+{
+
+    if (_cur_chat_uid == 0) {
+        return;
+    }
+
+    auto find_iter = _chat_items_added.find(_cur_chat_uid);
+    if (find_iter == _chat_items_added.end()) {
+        return;
+    }
+
+    //转为widget
+    QWidget* widget =  ui->chatting_friends_list->itemWidget(find_iter.value());
+    if (!widget) {
+        return;
+    }
+
+    //判断转化为自定义的widget
+    // 对自定义widget进行操作， 将item 转化为基类ListItemBase
+    ListBaseItem* customItem = qobject_cast<ListBaseItem*>(widget);
+    if (!customItem) {
+        qDebug() << "qobject_cast<ListItemBase*>(widget) is nullptr";
+        return;
+    }
+
+    auto itemType = customItem->GetItemType();
+    if (itemType == ListItemType::CHAT_FRIEND_ITEM) {
+        auto con_item = qobject_cast<msgCards*>(customItem);
+        if (!con_item) {
+            return;
+        }
+
+        //设置信息
+        auto user_info = con_item->GetUserInfo();
+        user_info->_chat_msgs.push_back(msgdata);
+        std::vector<std::shared_ptr<TextChatData>> msg_vec;
+        msg_vec.push_back(msgdata);
+        UserMgr::GetInstance()->AppendFriendChatMsg(_cur_chat_uid,msg_vec);
+        return;
+
+    }
+}
+
+void chatDialog::slot_text_chat_msg(std::shared_ptr<TextChatMsg> msg)
+{
+    auto find_iter = _chat_items_added.find(msg->_from_uid);
+    if(find_iter!=_chat_items_added.end())
+    {
+        qDebug() << "set chat item msg, uid is " << msg->_from_uid;
+        QWidget * widget = ui->chatting_friends_list->itemWidget(find_iter.value());
+        auto chat_wid = qobject_cast<msgCards *>(widget);
+        if(!chat_wid)
+        {
+            return;
+        }
+        chat_wid->updateLastMsg(msg->_chat_msgs);
+        UpdateChatMsg(msg->_chat_msgs);
+        UserMgr::GetInstance()->AppendFriendChatMsg(msg->_from_uid, msg->_chat_msgs);
+        return ;
+    }
+
+    auto * chat_wid = new msgCards();
+    auto fi_ptr = UserMgr::GetInstance()->GetFriendById(msg->_from_uid);
+    chat_wid->SetInfo(fi_ptr);
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setSizeHint(chat_wid->sizeHint());
+    chat_wid->updateLastMsg(msg->_chat_msgs);
+    UserMgr::GetInstance()->AppendFriendChatMsg(msg->_from_uid,msg->_chat_msgs);
+    ui->chatting_friends_list->insertItem(0, item);
+    ui->chatting_friends_list->setItemWidget(item, chat_wid);
+    _chat_items_added.insert(msg->_from_uid, item);
 }
 
 

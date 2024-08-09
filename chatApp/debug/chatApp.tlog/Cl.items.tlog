@@ -18,6 +18,7 @@ D:\QTmmm\chatApp\conuseritem.cpp;D:\QTmmm\chatApp\debug\conuseritem.obj
 D:\QTmmm\chatApp\customizededit.cpp;D:\QTmmm\chatApp\debug\customizededit.obj
 D:\QTmmm\chatApp\findfaileddlg.cpp;D:\QTmmm\chatApp\debug\findfaileddlg.obj
 D:\QTmmm\chatApp\findsuccessdlg.cpp;D:\QTmmm\chatApp\debug\findsuccessdlg.obj
+D:\QTmmm\chatApp\friendinfopage.cpp;D:\QTmmm\chatApp\debug\friendinfopage.obj
 D:\QTmmm\chatApp\friendlabel.cpp;D:\QTmmm\chatApp\debug\friendlabel.obj
 D:\QTmmm\chatApp\global.cpp;D:\QTmmm\chatApp\debug\global.obj
 D:\QTmmm\chatApp\grouptipitem.cpp;D:\QTmmm\chatApp\debug\grouptipitem.obj
@@ -76,3 +77,4 @@ D:\QTmmm\chatApp\Debug\moc_signupdialog.cpp;D:\QTmmm\chatApp\debug\moc_signupdia
 D:\QTmmm\chatApp\Debug\moc_statewidget.cpp;D:\QTmmm\chatApp\debug\moc_statewidget.obj
 D:\QTmmm\chatApp\Debug\moc_tcpmgr.cpp;D:\QTmmm\chatApp\debug\moc_tcpmgr.obj
 D:\QTmmm\chatApp\Debug\moc_usermgr.cpp;D:\QTmmm\chatApp\debug\moc_usermgr.obj
+D:\QTmmm\chatApp\Debug\moc_friendinfopage.cpp;D:\QTmmm\chatApp\debug\moc_friendinfopage.obj

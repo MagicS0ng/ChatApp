@@ -24,6 +24,7 @@ private:
 	void SearchInfo(std::shared_ptr<CSession>, const short &, const std::string &);
 	void AddFriendApply(std::shared_ptr<CSession>, const short&, const std::string&);
 	void AuthFriendApply(std::shared_ptr<CSession>session, const short& msg_id, const std::string& msg_data);
+	void DealChatTextMsg(std::shared_ptr<CSession> session, const short& msg_id, const std::string& msg_data);
 	bool GetBaseInfo(std::string base_key, int uid, std::shared_ptr<UserInfo>& userinfo);
 	bool isPureDigit(const std::string& str);
 	void GetUserByName(const std::string & name, Json::Value &rtvalue);

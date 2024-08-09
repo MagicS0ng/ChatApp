@@ -117,6 +117,9 @@
     <ClCompile Include="findsuccessdlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="friendinfopage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="friendlabel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -242,6 +245,9 @@
     <QtMoc Include="findsuccessdlg.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="friendinfopage.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="friendlabel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -343,6 +349,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="findsuccessdlg.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="friendinfopage.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="friendlabel.ui">

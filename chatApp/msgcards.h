@@ -17,8 +17,9 @@ public:
     ~msgCards();
     QSize sizeHint() const override;
     std::shared_ptr<UserInfo> GetUserInfo();
+    void SetInfo(std::shared_ptr<FriendInfo> friend_info);
     void SetInfo(std::shared_ptr<UserInfo> user_info);
-
+    void updateLastMsg(std::vector<std::shared_ptr<TextChatData>> msgs);
 private:
     Ui::msgCards *ui;
     std::shared_ptr<UserInfo> _user_info;

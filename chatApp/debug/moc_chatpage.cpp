@@ -38,8 +38,10 @@ namespace {
 struct qt_meta_stringdata_CLASSChatPageENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSChatPageENDCLASS = QtMocHelpers::stringData(
     "ChatPage",
-    "sendMsg",
+    "sig_append_send_chat_msg",
     "",
+    "std::shared_ptr<TextChatData>",
+    "msg",
     "on_send_btn_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -61,13 +63,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSChatPageENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    2, 0x06,    1 /* Public */,
+       1,    1,   26,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   27,    2, 0x08,    2 /* Private */,
+       5,    0,   29,    2, 0x08,    3 /* Private */,
 
  // signals: parameters
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 3,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -84,8 +86,9 @@ Q_CONSTINIT const QMetaObject ChatPage::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSChatPageENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<ChatPage, std::true_type>,
-        // method 'sendMsg'
+        // method 'sig_append_send_chat_msg'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<std::shared_ptr<TextChatData>, std::false_type>,
         // method 'on_send_btn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -98,21 +101,20 @@ void ChatPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         auto *_t = static_cast<ChatPage *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->sendMsg(); break;
+        case 0: _t->sig_append_send_chat_msg((*reinterpret_cast< std::add_pointer_t<std::shared_ptr<TextChatData>>>(_a[1]))); break;
         case 1: _t->on_send_btn_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ChatPage::*)();
-            if (_t _q_method = &ChatPage::sendMsg; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            using _t = void (ChatPage::*)(std::shared_ptr<TextChatData> );
+            if (_t _q_method = &ChatPage::sig_append_send_chat_msg; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *ChatPage::metaObject() const
@@ -146,8 +148,9 @@ int ChatPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ChatPage::sendMsg()
+void ChatPage::sig_append_send_chat_msg(std::shared_ptr<TextChatData> _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
