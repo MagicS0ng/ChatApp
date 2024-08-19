@@ -91,6 +91,11 @@ chatDialog::chatDialog(QWidget *parent)
             this, &chatDialog::slot_text_chat_msg);
 
     connect(ui->chat_page, &ChatPage::sig_append_send_chat_msg, this, &chatDialog::slot_append_send_chat_msg);
+
+
+    connect(TcpMgr::GetInstance().get(), &TcpMgr::sigReconnectStart, this, &chatDialog::onReconnectStart);
+    connect(TcpMgr::GetInstance().get(), &TcpMgr::sigReconnectSuccess, this, &chatDialog::onReconnectSuccess);
+    connect(TcpMgr::GetInstance().get(), &TcpMgr::sigReconnectFailed, this, &chatDialog::onReconnectFailed);
 }
 
 chatDialog::~chatDialog()
@@ -294,6 +299,24 @@ void chatDialog::slot_loading_contact_user()
     loadingDialog->deleteLater();
 
     is_loading = false;
+}
+
+void chatDialog::onReconnectFailed()
+{
+    QMessageBox msgBox;
+    msgBox.setInformativeText("服务器重新连接失败");
+}
+
+void chatDialog::onReconnectSuccess()
+{
+    QMessageBox msgBox;
+    msgBox.setInformativeText("服务器重新连接成功");
+}
+
+void chatDialog::onReconnectStart()
+{
+    QMessageBox msgBox;
+    msgBox.setInformativeText("开始重新连接服务器");
 }
 
 void chatDialog::slot_apply_friend(std::shared_ptr<AddFriendApply> apply)

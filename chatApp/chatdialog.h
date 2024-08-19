@@ -59,6 +59,9 @@ private slots:
     void slotLoadingChatFriends();
     void slotTextChanged(const QString &str);
     void slot_loading_contact_user();
+    void onReconnectFailed();
+    void onReconnectSuccess();
+    void onReconnectStart();
 public slots:
     void slot_apply_friend(std::shared_ptr<AddFriendApply> apply);
     void slot_add_auth_friend(std::shared_ptr<AuthInfo> auth_info);

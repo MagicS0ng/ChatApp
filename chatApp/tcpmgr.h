@@ -5,9 +5,11 @@
 #include <QAbstractSocket>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QThread>
 #include <QJsonObject>
 #include "UserMgr.h"
 #include "userdata.h"
+#include <QTimer>
 class TcpMgr: public QObject, public Singleton<TcpMgr>, public std::enable_shared_from_this<TcpMgr>
 {
     Q_OBJECT
@@ -26,9 +28,14 @@ private:
     quint16 m_message_len; // 包的length
     QMap<ReqId, std::function<void(ReqId id, int len, QByteArray data)>> _handlers;
     TcpMgr();
+    int m_reconnectAttempts;
+    const int kMaxReconnectAttempts = 5;
+    QTimer * m_reconnectTimer;
 public slots:
     void slotSendData(ReqId reqId, QByteArray data);
     void slotTcpConnect(ServerInfo);
+private slots:
+    void SlotAttemptReconnect();
 signals:
     void sigConSuccess(bool isSuccess); // 连接成功，发送给其他窗口信号
     void sigSendData(ReqId reqId,QByteArray data);
@@ -39,6 +46,10 @@ signals:
     void sig_add_auth_friend(std::shared_ptr<AuthInfo>);
     void sig_auth_rsp(std::shared_ptr<AuthRsp>);
     void sig_text_chat_msg(std::shared_ptr<TextChatMsg>);
+
+    void sigReconnectStart();
+    void sigReconnectSuccess();
+    void sigReconnectFailed();
 };
 
 #endif // TCPMGR_H

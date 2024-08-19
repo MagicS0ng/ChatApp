@@ -3,8 +3,8 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>D:\QTmmmEnv\redis\deps\hiredis\;D:\QTmmm\boost_1_81_0\include\boost-1_81\;F:\CPPReference\libjson\include;D:\QTmmmEnv\mysql-connector-c++-8.3.0-winx64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\QTmmmEnv\mysql-connector-c++-8.3.0-winx64\lib64\vs14;D:\QTmmmEnv\redis\lib\;F:\CPPReference\libjson\lib\;D:\QTmmm\boost_1_81_0\lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\QTmmmEnv\redis\deps\hiredis\;F:\CPPReference\boost_exe\;F:\CPPReference\libjson\include;D:\QTmmmEnv\mysql-connector-c++-8.3.0-winx64\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\QTmmmEnv\mysql-connector-c++-8.3.0-winx64\lib64\vs14;D:\QTmmmEnv\redis\lib\;F:\CPPReference\libjson\lib\;f:\CPPReference\boost_exe\lib64-msvc-14.3\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

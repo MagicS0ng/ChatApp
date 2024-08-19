@@ -1,11 +1,17 @@
 #include "tcpmgr.h"
 
 
-TcpMgr::TcpMgr():m_host(""), m_port(0), m_recv_pending(false), m_message_id(0), m_message_len(0)
+TcpMgr::TcpMgr():m_host(""), m_port(0), m_recv_pending(false), m_message_id(0), m_message_len(0), m_reconnectAttempts(0)
 {
+    m_reconnectTimer = new QTimer(this);
+    m_reconnectTimer->setInterval(5000); // 5秒重连
+    QObject::connect(m_reconnectTimer, &QTimer::timeout, this, &TcpMgr::SlotAttemptReconnect);
+
     QObject::connect(&m_socket, &QTcpSocket::connected,[&]()
                      {
         qDebug() << "Connected to Server!";
+        m_reconnectAttempts = 0;
+        m_reconnectTimer->stop();
         emit sigConSuccess(true);
     });//发出连接成功的信号
 
@@ -50,6 +56,9 @@ TcpMgr::TcpMgr():m_host(""), m_port(0), m_recv_pending(false), m_message_id(0), 
     QObject::connect(&m_socket, &QTcpSocket::disconnected,[&]()
                      {
         qDebug() << "Disconnected from server";
+        emit sigReconnectStart();
+        SlotAttemptReconnect();
+
     });
     QObject::connect(this, &TcpMgr::sigSendData,this, &TcpMgr::slotSendData);
     initHandlers();
@@ -381,4 +390,25 @@ void TcpMgr::slotTcpConnect(ServerInfo si)
     m_port = static_cast<uint16_t>(si.Port.toUInt());
     m_socket.connectToHost(si.Host,m_port);
 
+}
+
+void TcpMgr::SlotAttemptReconnect()
+{
+
+    while(m_reconnectAttempts <kMaxReconnectAttempts)
+    {
+        m_reconnectAttempts++;
+        qDebug() << "尝试重连服务器 (" << m_reconnectAttempts << "/" << kMaxReconnectAttempts << ")";
+        m_socket.abort();
+        m_socket.connectToHost(m_host, m_port);
+        if(m_socket.waitForConnected(5000))
+        {
+            qDebug() << "重连成功";
+            emit sigReconnectSuccess();
+            return ;
+        }
+        m_reconnectAttempts++;
+        QThread::sleep(1);
+    }
+    emit sigReconnectFailed();
 }
