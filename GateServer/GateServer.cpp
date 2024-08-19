@@ -9,10 +9,10 @@ int main()
 	unsigned short gate_port = atoi(gate_port_str.c_str());
 	try
 	{
-		unsigned short port = static_cast<unsigned short>(8080);
-		net::io_context ioc{ 1 };
-		boost::asio::signal_set signals(ioc, SIGINT, SIGTERM);
-		signals.async_wait([&ioc](const boost::system::error_code& error, int signal_number)
+		unsigned short port = static_cast<unsigned short>(8080);	// 端口
+		net::io_context ioc{ 1 };									// 并发数量
+		boost::asio::signal_set signals(ioc, SIGINT, SIGTERM);		// 捕捉termination或interrupt 信号 Ctrl-C SIGTERM
+		signals.async_wait([&ioc](const boost::system::error_code& error, int signal_number) // 异步地等待信号
 			{
 				if (error)
 				{

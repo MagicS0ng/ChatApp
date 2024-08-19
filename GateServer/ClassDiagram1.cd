@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="message::GetVarifyReqDefaultTypeInternal" Collapsed="true">
+    <Position X="25.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::GetVarifyRspDefaultTypeInternal" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::GetChatServerReqDefaultTypeInternal" Collapsed="true">
+    <Position X="22.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::GetChatServerRspDefaultTypeInternal" Collapsed="true">
+    <Position X="24" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::LoginReqDefaultTypeInternal" Collapsed="true">
+    <Position X="20.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::LoginRspDefaultTypeInternal" Collapsed="true">
+    <Position X="22.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::AddFriendReqDefaultTypeInternal" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::AddFriendRspDefaultTypeInternal" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::RplyFriendReqDefaultTypeInternal" Collapsed="true">
+    <Position X="22.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::RplyFriendRspDefaultTypeInternal" Collapsed="true">
+    <Position X="24" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::SendChatMsgReqDefaultTypeInternal" Collapsed="true">
+    <Position X="25.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::SendChatMsgRspDefaultTypeInternal" Collapsed="true">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::AuthFriendReqDefaultTypeInternal" Collapsed="true">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::AuthFriendRspDefaultTypeInternal" Collapsed="true">
+    <Position X="24" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::TextChatMsgReqDefaultTypeInternal" Collapsed="true">
+    <Position X="25.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::TextChatDataDefaultTypeInternal" Collapsed="true">
+    <Position X="24" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::TextChatMsgRspDefaultTypeInternal" Collapsed="true">
+    <Position X="17" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.cc</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::VarifyService" Collapsed="true">
+    <Position X="18.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.grpc.pb.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::StatusService" Collapsed="true">
+    <Position X="22.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.grpc.pb.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::ChatService" Collapsed="true">
+    <Position X="25.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.grpc.pb.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="message::PROTOBUF_FINAL" Collapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsioIOServicePool" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAKAAAAAAAAAAAAAAAAAAIAAACAAAAAAIIAgAAAAAgA=</HashCode>
+      <FileName>AsioIOServicePool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigMgr" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAKAAAAAAAAAAAAAAEAAACAAAAiAAAAAAA=</HashCode>
+      <FileName>ConfigMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Defer" Collapsed="true">
+    <Position X="20.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>const.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CServer" Collapsed="true">
+    <Position X="18.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAABAAAQCAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>CServer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HttpConnection" Collapsed="true">
+    <Position X="18.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAABQAQCAYEAAAABAgAAAAAAEBAAAAAAAABAAAAAE=</HashCode>
+      <FileName>HttpConnection.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicSystem" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAIEgAAAAAQAAAAAggAAAAAAAAAAAQA=</HashCode>
+      <FileName>LogicSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MysqlDAO" Collapsed="true">
+    <Position X="24" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAgAAgAAAAAAAAAAgAAAAAAACAAABABAAABA=</HashCode>
+      <FileName>MySqlDAO.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MysqlMgr" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAgAAAIAAAAAAgAAAAAAACAEAAAAABABA=</HashCode>
+      <FileName>MysqlMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SqlConnection" Collapsed="true">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>MySqlPool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MysqlPool" Collapsed="true">
+    <Position X="25.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EABBQAAAIAAAAAAAAAAAAAAEAAAAgQCoAAQBAECIAAA=</HashCode>
+      <FileName>MySqlPool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedisConPool" Collapsed="true">
+    <Position X="18.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIBAAAAAIAAAAAABAAAAAAAQAAAABAEoAAAAAACIAAA=</HashCode>
+      <FileName>RedisMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedisMgr" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAwAAAAABAHEAAAAAAAIAAAEgDIAAAAAABCAAAA=</HashCode>
+      <FileName>RedisMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RPConPool" Collapsed="true">
+    <Position X="20.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EADAAAAAAAAAgABIgABAAAAAAAAAAAAAIAAAAACAIAg=</HashCode>
+      <FileName>RPConPool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Singleton&lt;T&gt;" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAEAAAAAACAAAAABAAAAAEAAAAgAAAAAAA=</HashCode>
+      <FileName>Singleton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatusConPool" Collapsed="true">
+    <Position X="20.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIBAAAAAIAIAAAAAgAAAAAAQAAAAAAEgAAAAAACIAgA=</HashCode>
+      <FileName>StatusConPool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatusGrpcClient">
+    <Position X="13" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAQAAEAAAAAAAAAAARAAAAAAA=</HashCode>
+      <FileName>StatusGrpcClient.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VerifyGrpcClient" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VerifyGrpcClient.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="google::protobuf::internal::AnyMetadata" Collapsed="true">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>F:\CPPReference\grpc\third_party\protobuf\src\google\protobuf\any.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="SectionInfo" Collapsed="true">
+    <Position X="17" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAABAIAAAAAAAAAAAAAAAAAEAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ConfigMgr.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="TableStruct_message_2eproto" Collapsed="true">
+    <Position X="18.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAACAAAABAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.pb.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="UserInfo" Collapsed="true">
+    <Position X="20.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAEAAAg=</HashCode>
+      <FileName>MySqlDAO.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="HttpHandler" Collapsed="true">
+    <Position X="17" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogicSystem.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="ErrorCodes" Collapsed="true">
+    <Position X="17" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAABAAAAAAAABmAABAAAAAAAAAoIBAA=</HashCode>
+      <FileName>const.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

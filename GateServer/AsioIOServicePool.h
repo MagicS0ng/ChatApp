@@ -7,7 +7,7 @@ class AsioIOServicePool:public  Singleton<AsioIOServicePool>
 	friend class Singleton<AsioIOServicePool>;
 public:
 	using IOService = boost::asio::io_context;
-	using Work = boost::asio::io_context::work;
+	using Work = boost::asio::io_context::work; // io_context完成所有I/O操作时，会提前结束，因此需要一个work模拟I/O请求，防止io_context提前结束
 	using WorkPtr = std::unique_ptr<Work>;
 	~AsioIOServicePool();
 	AsioIOServicePool(const AsioIOServicePool&) = delete;

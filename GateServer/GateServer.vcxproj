@@ -173,6 +173,8 @@
     <ClCompile Include="VerifyGrpcClient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="config.ini" />
     <None Include="message.proto" />
   </ItemGroup>
