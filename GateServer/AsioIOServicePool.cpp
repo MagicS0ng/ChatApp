@@ -1,5 +1,4 @@
 #include "AsioIOServicePool.h"
-#include "AsioIOServicePool.h"
 #include <iostream>
 
 AsioIOServicePool::AsioIOServicePool(std::size_t size) :_ioServices(size),

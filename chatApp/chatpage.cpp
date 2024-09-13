@@ -12,6 +12,7 @@ ChatPage::ChatPage(QWidget *parent)
     ui->emoji_lb->SetState("normal", "hover","press","normal","hover","press");
     ui->file_lb ->SetState("normal", "hover","press","normal","hover","press");
     connect(ui->chat_msg_box,&MessageTextEdit::send,this,&ChatPage::on_send_btn_clicked);
+    connect(ui->file_lb,&ClickedLabel::clicked, this, &ChatPage::slotOpenFileDialog);
 }
 
 ChatPage::~ChatPage()
@@ -167,6 +168,19 @@ void ChatPage::on_send_btn_clicked()
     //发送tcp请求给chat server
     emit TcpMgr::GetInstance()->sigSendData(ReqId::ID_TEXT_CHAT_MSG_REQ, jsonData);
     ui->chat_msg_box->clear();
+}
+
+void ChatPage::slotOpenFileDialog()
+{
+    QStringList fileNames = QFileDialog::getOpenFileNames(this,
+                                                          tr("Open Files"), ".", tr("All Files (*)"));
+    if(!fileNames.empty())
+    {
+        for(auto & fileName: fileNames)
+        {
+            qDebug() << fileName << " ";
+        }
+    }
 }
 
 

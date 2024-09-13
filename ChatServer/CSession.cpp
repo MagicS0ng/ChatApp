@@ -39,11 +39,11 @@ void CSession::Send(std::string msg, short msgid)
 	int send_que_size = m_send_que.size();
 	if (send_que_size > ChatSet::MAX_SENDQUE)
 	{
-		std::cout << "Session: " << m_sessionid << " semd qie filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
+		std::cout << "Session: " << m_sessionid << " send queue filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
 		return;
 	}
 	m_send_que.push(std::make_shared<SendNode>(msg.c_str(), msg.length(), msgid));
-	if (send_que_size > 0)
+	if (send_que_size > 0) // 消息队列的长度只有1，当前>0时，表示已有消息正在处理，先返回
 	{
 		return;
 	}
@@ -57,7 +57,7 @@ void CSession::Send(char * msg, short max_length,short msgid)
 	int send_que_size = m_send_que.size();
 	if (send_que_size > MAX_SENDQUE)
 	{
-		std::cout << "Session: " << m_sessionid << " semd qie filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
+		std::cout << "Session: " << m_sessionid << " send queue filled, size is [" << ChatSet::MAX_SENDQUE << "] " << std::endl;
 		return;
 	}
 	m_send_que.push(std::make_shared<SendNode>(msg, max_length , msgid));
@@ -140,8 +140,8 @@ void CSession::AsyncReadHead(int total_len)
 				memcpy(m_recv_head_node->m_data, m_data, bytes_transfered);
 
 				short msg_id = 0;
-				memcpy(&msg_id, m_recv_head_node->m_data, ChatSet::HEAD_ID_LEN);
-				msg_id = boost::asio::detail::socket_ops::network_to_host_short(msg_id);
+				memcpy(&msg_id, m_recv_head_node->m_data, ChatSet::HEAD_ID_LEN); //拷贝 m_data的前HEAD_ID_LEN个，到msg_id的地址，为msg_id赋值
+				msg_id = boost::asio::detail::socket_ops::network_to_host_short(msg_id); // 转换字节序
 				std::cout << "msg id is [" << msg_id << "]" << std::endl;
 				if (msg_id > MAX_LENGTH)
 				{

@@ -1,8 +1,8 @@
 #include "CServer.h"
 #include "HttpConnection.h"
 
-CServer::CServer(boost::asio::io_context& ioc, unsigned short& port): m_ioc(ioc), m_acceptor(ioc, tcp::endpoint(tcp::v4(), port)),m_socket(ioc)
-{	
+CServer::CServer(boost::asio::io_context& ioc, unsigned short& port): m_ioc(ioc), m_acceptor(ioc, tcp::endpoint(tcp::v4(), port))
+{
 
 }
 void CServer::Start()

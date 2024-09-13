@@ -14,6 +14,7 @@
 #include "usermgr.h"
 #include "tcpmgr.h"
 #include "msgcards.h"
+#include <QFileDialog>
 namespace Ui {
 class ChatPage;
 }
@@ -31,7 +32,7 @@ protected:
     void paintEvent(QPaintEvent * event);
 private slots:
     void on_send_btn_clicked();
-
+    void slotOpenFileDialog();
 signals:
     // void sendMsg();
     void sig_append_send_chat_msg(std::shared_ptr<TextChatData> msg);

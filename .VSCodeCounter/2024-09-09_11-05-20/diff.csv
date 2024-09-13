@@ -1,0 +1,12 @@
+"filename", "language", "C++", "XML", "comment", "blank", "total"
+"d:\QTmmm\GateServer\AsioIOServicePool.cpp", "C++", -1, 0, 0, 0, -1
+"d:\QTmmm\GateServer\CServer.h", "C++", -1, 0, 0, 0, -1
+"d:\QTmmm\GateServer\GateServer.vcxproj", "XML", 0, 2, 0, 0, 2
+"d:\QTmmm\chatApp\chatdialog.cpp", "C++", 18, 0, 0, 5, 23
+"d:\QTmmm\chatApp\chatdialog.h", "C++", 3, 0, 0, 0, 3
+"d:\QTmmm\chatApp\chatpage.cpp", "C++", 13, 0, 0, 1, 14
+"d:\QTmmm\chatApp\chatpage.h", "C++", 2, 0, 0, -1, 1
+"d:\QTmmm\chatApp\mainwindow.cpp", "C++", 1, 0, -1, 0, 0
+"d:\QTmmm\chatApp\tcpmgr.cpp", "C++", 26, 0, 0, 4, 30
+"d:\QTmmm\chatApp\tcpmgr.h", "C++", 10, 0, 0, 1, 11
+"Total", "-", 71, 2, -1, 10, 82
