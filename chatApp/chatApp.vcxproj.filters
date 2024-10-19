@@ -147,6 +147,9 @@
     <ClCompile Include="mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="maskedbutton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="messagetextedit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -181,6 +184,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="usermgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="videocallingdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -272,6 +278,9 @@
     <QtMoc Include="mainwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="maskedbutton.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="messagetextedit.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -309,6 +318,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <QtMoc Include="usermgr.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="videocallingdialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -378,6 +390,9 @@
     <QtUic Include="signupdialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="videocallingdialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <None Include="resourse\add_friend.png">
@@ -443,6 +458,9 @@
     <None Include="resourse\filedir_press.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="resourse\hang-up-svgrepo-com.svg">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="resourse\head_1.jpg">
       <Filter>Resource Files</Filter>
     </None>
@@ -461,10 +479,22 @@
     <None Include="resourse\ice.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="resourse\icon.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="resourse\loading.gif">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="resourse\male.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\microphone-black-shape.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\microphone-off-svgrepo-com.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\microphone-svgrepo-com.svg">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="resourse\msg_chat_hover.png">
@@ -474,6 +504,15 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="resourse\msg_chat_press.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\mute.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\no-video.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\phone-svgrepo-com.svg">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="resourse\red_point.png">
@@ -497,6 +536,12 @@
     <None Include="styles\stylesheet.qss">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="resourse\telephone-handler.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\telephone.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="resourse\tipclose.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -509,6 +554,15 @@
     <QtRcc Include="userIcon.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+    <None Include="resourse\video-camera.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\video-slash-svgrepo-com.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resourse\video-svgrepo-com.svg">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="resourse\video_chat_hover.png">
       <Filter>Resource Files</Filter>
     </None>

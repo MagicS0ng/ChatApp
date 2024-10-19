@@ -56,9 +56,13 @@ constexpr auto qt_meta_stringdata_CLASSTcpMgrENDCLASS = QtMocHelpers::stringData
     "std::shared_ptr<AuthRsp>",
     "sig_text_chat_msg",
     "std::shared_ptr<TextChatMsg>",
+    "sigReconnectStart",
+    "sigReconnectSuccess",
+    "sigReconnectFailed",
     "slotSendData",
     "slotTcpConnect",
-    "ServerInfo"
+    "ServerInfo",
+    "SlotAttemptReconnect"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -71,27 +75,31 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSTcpMgrENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       9,       // signalCount
+      12,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   80,    2, 0x06,    1 /* Public */,
-       4,    2,   83,    2, 0x06,    3 /* Public */,
-       8,    0,   88,    2, 0x06,    6 /* Public */,
-       9,    1,   89,    2, 0x06,    7 /* Public */,
-      10,    1,   92,    2, 0x06,    9 /* Public */,
-      12,    1,   95,    2, 0x06,   11 /* Public */,
-      14,    1,   98,    2, 0x06,   13 /* Public */,
-      16,    1,  101,    2, 0x06,   15 /* Public */,
-      18,    1,  104,    2, 0x06,   17 /* Public */,
+       1,    1,  104,    2, 0x06,    1 /* Public */,
+       4,    2,  107,    2, 0x06,    3 /* Public */,
+       8,    0,  112,    2, 0x06,    6 /* Public */,
+       9,    1,  113,    2, 0x06,    7 /* Public */,
+      10,    1,  116,    2, 0x06,    9 /* Public */,
+      12,    1,  119,    2, 0x06,   11 /* Public */,
+      14,    1,  122,    2, 0x06,   13 /* Public */,
+      16,    1,  125,    2, 0x06,   15 /* Public */,
+      18,    1,  128,    2, 0x06,   17 /* Public */,
+      20,    0,  131,    2, 0x06,   19 /* Public */,
+      21,    0,  132,    2, 0x06,   20 /* Public */,
+      22,    0,  133,    2, 0x06,   21 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      20,    2,  107,    2, 0x0a,   19 /* Public */,
-      21,    1,  112,    2, 0x0a,   22 /* Public */,
+      23,    2,  134,    2, 0x0a,   22 /* Public */,
+      24,    1,  139,    2, 0x0a,   25 /* Public */,
+      26,    0,  142,    2, 0x08,   27 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -103,10 +111,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSTcpMgrENDCLASS[] = {
     QMetaType::Void, 0x80000000 | 15,    2,
     QMetaType::Void, 0x80000000 | 17,    2,
     QMetaType::Void, 0x80000000 | 19,    2,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 5, QMetaType::QByteArray,    6,    7,
-    QMetaType::Void, 0x80000000 | 22,    2,
+    QMetaType::Void, 0x80000000 | 25,    2,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -147,13 +159,21 @@ Q_CONSTINIT const QMetaObject TcpMgr::staticMetaObject = { {
         // method 'sig_text_chat_msg'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<std::shared_ptr<TextChatMsg>, std::false_type>,
+        // method 'sigReconnectStart'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigReconnectSuccess'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'sigReconnectFailed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotSendData'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<ReqId, std::false_type>,
         QtPrivate::TypeAndForceComplete<QByteArray, std::false_type>,
         // method 'slotTcpConnect'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<ServerInfo, std::false_type>
+        QtPrivate::TypeAndForceComplete<ServerInfo, std::false_type>,
+        // method 'SlotAttemptReconnect'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -173,8 +193,12 @@ void TcpMgr::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 6: _t->sig_add_auth_friend((*reinterpret_cast< std::add_pointer_t<std::shared_ptr<AuthInfo>>>(_a[1]))); break;
         case 7: _t->sig_auth_rsp((*reinterpret_cast< std::add_pointer_t<std::shared_ptr<AuthRsp>>>(_a[1]))); break;
         case 8: _t->sig_text_chat_msg((*reinterpret_cast< std::add_pointer_t<std::shared_ptr<TextChatMsg>>>(_a[1]))); break;
-        case 9: _t->slotSendData((*reinterpret_cast< std::add_pointer_t<ReqId>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[2]))); break;
-        case 10: _t->slotTcpConnect((*reinterpret_cast< std::add_pointer_t<ServerInfo>>(_a[1]))); break;
+        case 9: _t->sigReconnectStart(); break;
+        case 10: _t->sigReconnectSuccess(); break;
+        case 11: _t->sigReconnectFailed(); break;
+        case 12: _t->slotSendData((*reinterpret_cast< std::add_pointer_t<ReqId>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[2]))); break;
+        case 13: _t->slotTcpConnect((*reinterpret_cast< std::add_pointer_t<ServerInfo>>(_a[1]))); break;
+        case 14: _t->SlotAttemptReconnect(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -242,6 +266,27 @@ void TcpMgr::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
                 return;
             }
         }
+        {
+            using _t = void (TcpMgr::*)();
+            if (_t _q_method = &TcpMgr::sigReconnectStart; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 9;
+                return;
+            }
+        }
+        {
+            using _t = void (TcpMgr::*)();
+            if (_t _q_method = &TcpMgr::sigReconnectSuccess; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 10;
+                return;
+            }
+        }
+        {
+            using _t = void (TcpMgr::*)();
+            if (_t _q_method = &TcpMgr::sigReconnectFailed; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 11;
+                return;
+            }
+        }
     }
 }
 
@@ -268,13 +313,13 @@ int TcpMgr::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 15;
     }
     return _id;
 }
@@ -339,5 +384,23 @@ void TcpMgr::sig_text_chat_msg(std::shared_ptr<TextChatMsg> _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void TcpMgr::sigReconnectStart()
+{
+    QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
+}
+
+// SIGNAL 10
+void TcpMgr::sigReconnectSuccess()
+{
+    QMetaObject::activate(this, &staticMetaObject, 10, nullptr);
+}
+
+// SIGNAL 11
+void TcpMgr::sigReconnectFailed()
+{
+    QMetaObject::activate(this, &staticMetaObject, 11, nullptr);
 }
 QT_WARNING_POP

@@ -50,5 +50,18 @@
         <file>resourse/voice_chat_hover.png</file>
         <file>resourse/voice_chat_normal.png</file>
         <file>resourse/voice_chat_press.png</file>
+        <file>resourse/microphone-black-shape.png</file>
+        <file>resourse/mute.png</file>
+        <file>resourse/no-video.png</file>
+        <file>resourse/video-camera.png</file>
+        <file>resourse/telephone.png</file>
+        <file>resourse/telephone-handler.png</file>
+        <file>resourse/hang-up-svgrepo-com.svg</file>
+        <file>resourse/video-slash-svgrepo-com.svg</file>
+        <file>resourse/video-svgrepo-com.svg</file>
+        <file>resourse/microphone-off-svgrepo-com.svg</file>
+        <file>resourse/microphone-svgrepo-com.svg</file>
+        <file>resourse/phone-svgrepo-com.svg</file>
+        <file>resourse/icon.png</file>
     </qresource>
 </RCC>

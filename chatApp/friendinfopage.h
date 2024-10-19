@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "userdata.h"
-
+#include "videocallingdialog.h"
 namespace Ui {
 class FriendInfoPage;
 }
@@ -18,10 +18,13 @@ public:
     void SetInfo(std::shared_ptr<UserInfo> ui);
 private slots:
     void on_msg_chat_clicked();
-
+    void slotOpenVideoCallDlg();
+public slots:
+    void slotCloseVideoCallDlg();
 private:
     Ui::FriendInfoPage *ui;
     std::shared_ptr<UserInfo> _user_info;
+    VideoCallingDialog *_video_dlg;
 signals:
     void sig_jump_chat_item(std::shared_ptr<UserInfo> si);
 };

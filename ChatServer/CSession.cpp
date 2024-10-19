@@ -43,7 +43,7 @@ void CSession::Send(std::string msg, short msgid)
 		return;
 	}
 	m_send_que.push(std::make_shared<SendNode>(msg.c_str(), msg.length(), msgid));
-	if (send_que_size > 0) // 消息队列的长度只有1，当前>0时，表示已有消息正在处理，先返回
+	if (send_que_size > 0) 
 	{
 		return;
 	}
@@ -61,7 +61,7 @@ void CSession::Send(char * msg, short max_length,short msgid)
 		return;
 	}
 	m_send_que.push(std::make_shared<SendNode>(msg, max_length , msgid));
-	if (send_que_size > 0)
+	if (send_que_size > 0) // 保证同一个时刻，只有一个异步写操作执行，使用队列，保证顺序
 	{
 		return;
 	}

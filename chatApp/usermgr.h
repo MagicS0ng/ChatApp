@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QJsonArray>
+#include <VideoCallingDialog.h>
 #include "userdata.h"
 #include "singleton.h"
 class UserMgr: public QObject, public Singleton<UserMgr>
@@ -44,6 +45,8 @@ private:
     std::vector<std::shared_ptr<FriendInfo>> _friend_list;
     int _chat_loaded;
     int _contact_loaded;
+    bool is_calling=false;
+
 private:
     UserMgr();
 };

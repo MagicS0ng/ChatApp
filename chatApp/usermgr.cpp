@@ -5,8 +5,7 @@ UserMgr::UserMgr():m_user_info(nullptr),_chat_loaded(0),_contact_loaded(0)
 
 }
 UserMgr::~UserMgr()
-{
-
+{    
 }
 
 

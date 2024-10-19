@@ -28,6 +28,7 @@ D:\QTmmm\chatApp\loadingdlg.cpp;D:\QTmmm\chatApp\debug\loadingdlg.obj
 D:\QTmmm\chatApp\logindialog.cpp;D:\QTmmm\chatApp\debug\logindialog.obj
 D:\QTmmm\chatApp\main.cpp;D:\QTmmm\chatApp\debug\main.obj
 D:\QTmmm\chatApp\mainwindow.cpp;D:\QTmmm\chatApp\debug\mainwindow.obj
+D:\QTmmm\chatApp\maskedbutton.cpp;D:\QTmmm\chatApp\debug\maskedbutton.obj
 D:\QTmmm\chatApp\messagetextedit.cpp;D:\QTmmm\chatApp\debug\messagetextedit.obj
 D:\QTmmm\chatApp\msgcards.cpp;D:\QTmmm\chatApp\debug\msgcards.obj
 D:\QTmmm\chatApp\picturebubble.cpp;D:\QTmmm\chatApp\debug\picturebubble.obj
@@ -40,6 +41,7 @@ D:\QTmmm\chatApp\textbubble.cpp;D:\QTmmm\chatApp\debug\textbubble.obj
 D:\QTmmm\chatApp\timerbtn.cpp;D:\QTmmm\chatApp\debug\timerbtn.obj
 D:\QTmmm\chatApp\userdata.cpp;D:\QTmmm\chatApp\debug\userdata.obj
 D:\QTmmm\chatApp\usermgr.cpp;D:\QTmmm\chatApp\debug\usermgr.obj
+D:\QTmmm\chatApp\videocallingdialog.cpp;D:\QTmmm\chatApp\debug\videocallingdialog.obj
 D:\QTmmm\chatApp\Debug\qrc_userIcon.cpp;D:\QTmmm\chatApp\debug\qrc_userIcon.obj
 D:\QTmmm\chatApp\Debug\moc_adduseritem.cpp;D:\QTmmm\chatApp\debug\moc_adduseritem.obj
 D:\QTmmm\chatApp\Debug\moc_applyfriend.cpp;D:\QTmmm\chatApp\debug\moc_applyfriend.obj
@@ -61,6 +63,7 @@ D:\QTmmm\chatApp\Debug\moc_conuseritem.cpp;D:\QTmmm\chatApp\debug\moc_conuserite
 D:\QTmmm\chatApp\Debug\moc_customizededit.cpp;D:\QTmmm\chatApp\debug\moc_customizededit.obj
 D:\QTmmm\chatApp\Debug\moc_findfaileddlg.cpp;D:\QTmmm\chatApp\debug\moc_findfaileddlg.obj
 D:\QTmmm\chatApp\Debug\moc_findsuccessdlg.cpp;D:\QTmmm\chatApp\debug\moc_findsuccessdlg.obj
+D:\QTmmm\chatApp\Debug\moc_friendinfopage.cpp;D:\QTmmm\chatApp\debug\moc_friendinfopage.obj
 D:\QTmmm\chatApp\Debug\moc_friendlabel.cpp;D:\QTmmm\chatApp\debug\moc_friendlabel.obj
 D:\QTmmm\chatApp\Debug\moc_grouptipitem.cpp;D:\QTmmm\chatApp\debug\moc_grouptipitem.obj
 D:\QTmmm\chatApp\Debug\moc_httpmgr.cpp;D:\QTmmm\chatApp\debug\moc_httpmgr.obj
@@ -68,6 +71,7 @@ D:\QTmmm\chatApp\Debug\moc_listbaseitem.cpp;D:\QTmmm\chatApp\debug\moc_listbasei
 D:\QTmmm\chatApp\Debug\moc_loadingdlg.cpp;D:\QTmmm\chatApp\debug\moc_loadingdlg.obj
 D:\QTmmm\chatApp\Debug\moc_logindialog.cpp;D:\QTmmm\chatApp\debug\moc_logindialog.obj
 D:\QTmmm\chatApp\Debug\moc_mainwindow.cpp;D:\QTmmm\chatApp\debug\moc_mainwindow.obj
+D:\QTmmm\chatApp\Debug\moc_maskedbutton.cpp;D:\QTmmm\chatApp\debug\moc_maskedbutton.obj
 D:\QTmmm\chatApp\Debug\moc_messagetextedit.cpp;D:\QTmmm\chatApp\debug\moc_messagetextedit.obj
 D:\QTmmm\chatApp\Debug\moc_msgcards.cpp;D:\QTmmm\chatApp\debug\moc_msgcards.obj
 D:\QTmmm\chatApp\Debug\moc_picturebubble.cpp;D:\QTmmm\chatApp\debug\moc_picturebubble.obj
@@ -77,4 +81,4 @@ D:\QTmmm\chatApp\Debug\moc_signupdialog.cpp;D:\QTmmm\chatApp\debug\moc_signupdia
 D:\QTmmm\chatApp\Debug\moc_statewidget.cpp;D:\QTmmm\chatApp\debug\moc_statewidget.obj
 D:\QTmmm\chatApp\Debug\moc_tcpmgr.cpp;D:\QTmmm\chatApp\debug\moc_tcpmgr.obj
 D:\QTmmm\chatApp\Debug\moc_usermgr.cpp;D:\QTmmm\chatApp\debug\moc_usermgr.obj
-D:\QTmmm\chatApp\Debug\moc_friendinfopage.cpp;D:\QTmmm\chatApp\debug\moc_friendinfopage.obj
+D:\QTmmm\chatApp\Debug\moc_videocallingdialog.cpp;D:\QTmmm\chatApp\debug\moc_videocallingdialog.obj

@@ -13,6 +13,7 @@ ChatPage::ChatPage(QWidget *parent)
     ui->file_lb ->SetState("normal", "hover","press","normal","hover","press");
     connect(ui->chat_msg_box,&MessageTextEdit::send,this,&ChatPage::on_send_btn_clicked);
     connect(ui->file_lb,&ClickedLabel::clicked, this, &ChatPage::slotOpenFileDialog);
+    // connect(ui->video_call_lb, &ClickedLabel::clicked, this, &ChatPage::slotOpenVideoCallDlg);
 }
 
 ChatPage::~ChatPage()

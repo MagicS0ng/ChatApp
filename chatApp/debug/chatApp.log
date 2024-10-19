@@ -1,10 +1,224 @@
-﻿  Uic'ing friendinfopage.ui...
-  Moc'ing friendinfopage.h...
+﻿  Generate moc_predefs.h
+  adduseritem.cpp
+  applyfriend.cpp
+  applyfrienditem.cpp
+  applyfriendlist.cpp
+  applyfriendpage.cpp
+  authenfriend.cpp
+  bubbleframe.cpp
+  chatdialog.cpp
+  chatitembase.cpp
+  chatpage.cpp
+  chattingfriendslist.cpp
+  chattingview.cpp
+  clickedbtn.cpp
+  clickedlabel.cpp
+  clickedoncelabel.cpp
+  contactuserlist.cpp
+D:\QTmmm\chatApp\chattingview.cpp(41,46): warning C4100: 'bubble': unreferenced formal parameter
+D:\QTmmm\chatApp\chattingview.cpp(46,59): warning C4100: 're': unreferenced formal parameter
+D:\QTmmm\chatApp\chattingview.cpp(46,45): warning C4100: 'pre': unreferenced formal parameter
+D:\QTmmm\chatApp\chattingview.cpp(80,44): warning C4100: 'event': unreferenced formal parameter
+D:\QTmmm\chatApp\chattingview.cpp(88,52): warning C4100: 'max': unreferenced formal parameter
+D:\QTmmm\chatApp\chattingview.cpp(88,42): warning C4100: 'min': unreferenced formal parameter
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'authenfriend.cpp')
+  
+  conuseritem.cpp
+  customizededit.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'chattingfriendslist.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'applyfrienditem.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'applyfriend.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'applyfriendpage.cpp')
+  
+  findfaileddlg.cpp
+  findsuccessdlg.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'contactuserlist.cpp')
+  
   friendinfopage.cpp
 D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  moc_friendinfopage.cpp
+  (compiling source file 'chatpage.cpp')
+  
 D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'chatdialog.cpp')
+  
+  friendlabel.cpp
+D:\QTmmm\chatApp\authenfriend.cpp(89,106): warning C4100: 'text_height': unreferenced formal parameter
+  global.cpp
+  grouptipitem.cpp
+  httpmgr.cpp
+D:\QTmmm\chatApp\contactuserlist.cpp(79,13): warning C4189: 'str_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\contactuserlist.cpp(200,9): warning C4189: 'str_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\contactuserlist.cpp(201,9): warning C4189: 'head_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\contactuserlist.cpp(226,9): warning C4189: 'str_i': local variable is initialized but not referenced
+  listbaseitem.cpp
+D:\QTmmm\chatApp\applyfriendpage.cpp(44,47): warning C4100: 'event': unreferenced formal parameter
+D:\QTmmm\chatApp\chatpage.cpp(67,40): warning C4100: 'event': unreferenced formal parameter
+D:\QTmmm\chatApp\chatdialog.cpp(352,9): warning C4189: 'str_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\chatdialog.cpp(354,9): warning C4189: 'name_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\chatdialog.cpp(353,9): warning C4189: 'head_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\chatdialog.cpp(380,9): warning C4189: 'str_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\chatdialog.cpp(382,9): warning C4189: 'name_i': local variable is initialized but not referenced
+D:\QTmmm\chatApp\chatdialog.cpp(381,9): warning C4189: 'head_i': local variable is initialized but not referenced
+  loadingdlg.cpp
+  logindialog.cpp
+  main.cpp
+  mainwindow.cpp
+  maskedbutton.cpp
+  messagetextedit.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'friendinfopage.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'conuseritem.cpp')
+  
+  msgcards.cpp
+  picturebubble.cpp
+D:\QTmmm\chatApp\friendlabel.cpp(25,10): warning C4189: 'textWidth': local variable is initialized but not referenced
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'findsuccessdlg.cpp')
+  
+  resetdialog.cpp
+  searchlist.cpp
+  signupdialog.cpp
+  statewidget.cpp
+D:\QTmmm\chatApp\listbaseitem.cpp(18,44): warning C4100: 'event': unreferenced formal parameter
+  tcpmgr.cpp
+  textbubble.cpp
+  timerbtn.cpp
+  userdata.cpp
+  usermgr.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'logindialog.cpp')
+  
+D:\QTmmm\chatApp\logindialog.cpp(96,30): warning C4129: 'd': unrecognized character escape sequence
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'main.cpp')
+  
+  videocallingdialog.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'mainwindow.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'msgcards.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'searchlist.cpp')
+  
+D:\QTmmm\chatApp\signupdialog.cpp(295,30): warning C4129: 'd': unrecognized character escape sequence
+D:\QTmmm\chatApp\statewidget.cpp(70,43): warning C4100: 'event': unreferenced formal parameter
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'userdata.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'tcpmgr.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'usermgr.cpp')
+  
+D:\QTmmm\chatApp\usermgr.cpp(165,41): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\QTmmm\chatApp\usermgr.cpp(203,44): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\QTmmm\chatApp\videocallingdialog.cpp(44,48): warning C4100: 'ev': unreferenced formal parameter
+  qrc_userIcon.cpp
+  moc_adduseritem.cpp
+  moc_applyfriend.cpp
+  moc_applyfrienditem.cpp
+  moc_applyfriendlist.cpp
+  moc_applyfriendpage.cpp
+  moc_authenfriend.cpp
+  moc_bubbleframe.cpp
+  moc_chatdialog.cpp
+  moc_chatitembase.cpp
+  moc_chatpage.cpp
+  moc_chattingfriendslist.cpp
+  moc_chattingview.cpp
+  moc_clickedbtn.cpp
+  moc_clickedlabel.cpp
+  moc_clickedoncelabel.cpp
+  moc_contactuserlist.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_authenfriend.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_chattingfriendslist.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_applyfriend.cpp')
+  
+  moc_conuseritem.cpp
+  moc_customizededit.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_contactuserlist.cpp')
+  
+  moc_findfaileddlg.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_applyfrienditem.cpp')
+  
+  moc_findsuccessdlg.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_applyfriendpage.cpp')
+  
+  moc_friendinfopage.cpp
+  moc_friendlabel.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_chatdialog.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_chatpage.cpp')
+  
+  moc_grouptipitem.cpp
+  moc_httpmgr.cpp
+  moc_listbaseitem.cpp
+  moc_loadingdlg.cpp
+  moc_logindialog.cpp
+  moc_mainwindow.cpp
+  moc_maskedbutton.cpp
+  moc_messagetextedit.cpp
+  moc_msgcards.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_findsuccessdlg.cpp')
+  
+  moc_picturebubble.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_friendinfopage.cpp')
+  
+  moc_resetdialog.cpp
+  moc_searchlist.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_conuseritem.cpp')
+  
+  moc_signupdialog.cpp
+  moc_statewidget.cpp
+  moc_tcpmgr.cpp
+  moc_usermgr.cpp
+  moc_videocallingdialog.cpp
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_logindialog.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_mainwindow.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_msgcards.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_searchlist.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_usermgr.cpp')
+  
+D:\QTmmm\chatApp\userdata.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Debug/moc_tcpmgr.cpp')
+  
   chatApp.vcxproj -> D:\QTmmm\chatApp\bin\chatApp.exe
-  xcopy /Y /E /I ".\static" ".\.\bin\static\"
-  .\static\head_1.jpg
+  xcopy /Y /E /I "D:\QTmmm\chatApp\static" "D:\QTmmm\chatApp\.\bin\static\"
+  D:\QTmmm\chatApp\static\head_1.jpg
   1 File(s) copied

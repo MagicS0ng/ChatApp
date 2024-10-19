@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -42,6 +42,8 @@ SOURCES += \
     logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
+    # maskedbutton.cpp \
+    maskedbutton.cpp \
     messagetextedit.cpp \
     msgcards.cpp \
     picturebubble.cpp \
@@ -53,7 +55,8 @@ SOURCES += \
     textbubble.cpp \
     timerbtn.cpp \
     userdata.cpp \
-    usermgr.cpp
+    usermgr.cpp \
+    videocallingdialog.cpp
 
 HEADERS += \
     adduseritem.h \
@@ -85,6 +88,8 @@ HEADERS += \
     loadingdlg.h \
     logindialog.h \
     mainwindow.h \
+    # maskedbutton.h \
+    maskedbutton.h \
     messagetextedit.h \
     msgcards.h \
     picturebubble.h \
@@ -97,7 +102,8 @@ HEADERS += \
     textbubble.h \
     timerbtn.h \
     userdata.h \
-    usermgr.h
+    usermgr.h \
+    videocallingdialog.h
 
 FORMS += \
     adduseritem.ui \
@@ -118,7 +124,8 @@ FORMS += \
     mainwindow.ui \
     msgcards.ui \
     resetdialog.ui \
-    signupdialog.ui
+    signupdialog.ui \
+    videocallingdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
